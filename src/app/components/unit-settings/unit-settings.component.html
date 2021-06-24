@@ -1,0 +1,21 @@
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">Date</th>
+    <th scope="col">External Voltage</th>
+    <th scope="col">Unit RSSI</th>
+    <th scope="col">Voltage</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let i of scanHistory">
+    <th>{{i.createdAt | date:'dd.MM.yyyy HH:mm'}}</th>
+    <th>{{i.isExtVoltageOn}}</th>
+    <th>{{i.unitRSSI}}</th>
+    <th>{{i.voltage}}</th>
+    <th></th>
+  </tr>
+
+  </tbody>
+</table>

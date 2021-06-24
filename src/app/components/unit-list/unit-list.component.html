@@ -1,0 +1,21 @@
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">Unit id</th>
+    <th scope="col">Name</th>
+    <th scope="col">Created</th>
+    <th scope="col">Color</th>
+    <th scope="col">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let i of items" [routerLink]="['/unit-settings']" [queryParams]="{id: i._id}">
+    <th>{{i.unitId}}</th>
+    <th>{{i.name}}</th>
+    <th>{{i.createdAt | date:'dd.MM.yyyy HH:mm'}}</th>
+    <th>{{i.color}}</th>
+    <th></th>
+  </tr>
+
+  </tbody>
+</table>
