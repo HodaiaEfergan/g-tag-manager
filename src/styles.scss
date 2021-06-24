@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+  background-color: rgba(204, 204, 204, 0.18);
+}
+
+
+
+.my-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 15px;
+}
