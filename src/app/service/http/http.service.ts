@@ -8,9 +8,9 @@ import {isNullOrUndefined} from 'util';
 export class HttpService {
 
   URL_TEST = 'http://localhost:3000/api/';
-  URL_LIVE = '';
+  URL_LIVE = 'https://gtag930.herokuapp.com/api/';
 
-  baseUrl = this.URL_TEST;
+  baseUrl = this.URL_LIVE;
 
 
   httpOptions = {

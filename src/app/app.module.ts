@@ -11,6 +11,7 @@ import {HttpService} from './service/http/http.service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {UnitSettingsComponent} from './components/unit-settings/unit-settings.component';
 import {HttpConfigInterceptor} from './interceptor/http-interceptor';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {HttpConfigInterceptor} from './interceptor/http-interceptor';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [HttpService, {
     provide: HTTP_INTERCEPTORS,
