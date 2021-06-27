@@ -19,6 +19,11 @@ export class HttpConfigInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    if (!localStorage.getItem('token')) {
+      return next.handle(request);
+    }
+
     const modifiedReq = request.clone({
       headers: request.headers.set('token', localStorage.getItem('token')),
     });
