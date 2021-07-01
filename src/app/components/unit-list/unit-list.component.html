@@ -1,63 +1,51 @@
 <h3 class="col text-center">Your units:</h3>
-<form>
-  <div class="row text-center">
-    <div class="col">
-      <input type="text" class="form-control" placeholder="unit's name">
-    </div>
-    <div class="col">
-      <input type="text" class="form-control" placeholder="Last name">
-    </div>
-    <div class="col">
-      <input type="text" class="form-control" placeholder="Last name">
-    </div>
-    <div class="col">
-      <button type="button" class="btn btn-primary" dir="rtl">sort</button>
-      
-    </div>
-    
 
-  </div>
-</form>
-<form>
-  <div class="row mt-3 text-center">
-    <div class="col">
-      <input type="text" class="form-control" placeholder="unit's name">
-    </div>
-    <div class="col">
-      <input type="text" class="form-control" placeholder="Last name">
-    </div>
-    <div class="col">
-      <input type="text" class="form-control" placeholder="Last name">
-    </div>
-    <div class="col">
-      <button type="button" class="btn btn-primary" dir="rtl">filter</button>
-      
-    </div>
-    
+<div class="row">
+  <table class="table table-hover mt-4" id="excel-table">
+    <thead>
+    <tr>
+      <th align="center" (click)="setSort('unitId')">Unit id <mat-icon>{{getSortIcon('unitId')}}</mat-icon>
+      </th>
+      <th>Name</th>
+      <th (click)="setSort('createdAt')">Created <mat-icon>{{getSortIcon('createdAt')}}</mat-icon></th>
+      <th>Color</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
 
-  </div>
-</form>
-<table class="table table-hover mt-4" id="excel-table"> 
-  <tr>       
-     <th>Change config?!</th> 
-     <th>Unit id</th>  
-     <th>Name</th> 
-     <th>Created</th> 
-     <th>Color</th> 
-     <th>Actions</th>   
-  </tr>    
-  
-  <tr *ngFor="let i of items" [routerLink]="['/unit-settings']" [queryParams]="{id: i._id}">
-    <th><input class="form-check-input" type="checkbox" value='' id="flexCheckDefault"></th>
-    <th>{{i.unitId}}</th>
-    <th>{{i.name}}</th>
-    <th>{{i.createdAt | date:'dd.MM.yyyy HH:mm'}}</th>
-    <th>{{i.color}}</th>
-      <th></th>
-  </tr>
-</table>
-<a style="cursor: pointer" (click)="exportexcel()"  dir="rtl" >
-  <button type="button" class="btn btn-success" dir="rtl">export to excel</button>
-</a>
+    <tbody>
+    <tr *ngFor="let i of items">
+      <th>{{i.unitId}}</th>
+      <th>{{i.name}}</th>
+      <th>{{i.createdAt | date:'dd.MM.yyyy HH:mm'}}</th>
+      <th>{{i.color}}</th>
+      <th>
+        <button [routerLink]="['/unit-settings']" [queryParams]="{id: i._id}" class="btn btn-sm btn-success">Scan
+          History
+        </button>
+      </th>
+    </tr>
+    </tbody>
+  </table>
+
+  <a style="cursor: pointer" (click)="exportexcel()" dir="rtl">
+    <button type="button" class="btn btn-success" dir="rtl">export to excel</button>
+  </a>
+
+</div>
+
+
+<div class="row text-center" style="height: 300px; width: 600px;">
+  <canvas baseChart
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"
+          [plugins]="lineChartPlugins">
+  </canvas>
+</div>
+
 
 

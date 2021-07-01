@@ -15,6 +15,10 @@ import {ChartsModule} from 'ng2-charts';
 import { RouterModule } from '@angular/router';
 import { SolutionComponent } from './components/solution/solution.component';
 import { ManagerComponent } from './components/manager/manager.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatIconModule} from '@angular/material/icon';
+import { ConfigurationListComponent } from './components/configuration-list/configuration-list.component';
+import { EditCreateConfigurationComponent } from './components/edit-create-configuration/edit-create-configuration.component';
 
 
 
@@ -27,6 +31,8 @@ import { ManagerComponent } from './components/manager/manager.component';
     UnitSettingsComponent,
     SolutionComponent,
     ManagerComponent,
+    ConfigurationListComponent,
+    EditCreateConfigurationComponent,
 
   ],
   imports: [
@@ -37,6 +43,8 @@ import { ManagerComponent } from './components/manager/manager.component';
     ChartsModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatIconModule
     //RouterModule.forRoot(routes)
   ],
   providers: [HttpService, {

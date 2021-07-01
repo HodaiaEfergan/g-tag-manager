@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {isNullOrUndefined} from 'util';
-import { Unit } from 'src/app/models/unit';
+import {Unit} from 'src/app/models/unit';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +11,7 @@ export class HttpService {
   URL_TEST = 'http://localhost:3000/api/';
   URL_LIVE = 'https://gtag930.herokuapp.com/api/';
 
-  baseUrl = this.URL_LIVE;
+  baseUrl = this.URL_TEST;
 
 
   httpOptions = {
@@ -21,8 +22,8 @@ export class HttpService {
     })
   };
 
-  currentUnits: Array<Unit>
-  
+  currentUnits: Array<Unit>;
+
   constructor(private http: HttpClient) {
   }
 
@@ -46,8 +47,8 @@ export class HttpService {
     return this.http.get(this.baseUrl + 'units/' + unitId,).toPromise();
   }
 
-  getUserUnits() {
-    return this.http.get(this.baseUrl + 'units').toPromise();
+  getUserUnits(sortKey) {
+    return this.http.get(this.baseUrl + 'units?sortBy=' + sortKey).toPromise();
   }
 
   getUnitScanData(unitId) {
