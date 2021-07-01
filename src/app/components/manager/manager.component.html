@@ -1,0 +1,18 @@
+<table class="table table-hover mt-4" id="excel-table"> 
+    <tr>       
+       <th>Email</th> 
+       <th>Role</th>  
+       <th>Is Locked</th> 
+       <th>edit</th> 
+       <th>delete</th> 
+       
+    </tr>    
+    
+    <tr *ngFor="let i of items" [routerLink]="['/users']" [queryParams]="{id: i._id}">
+      <th>{{i.unitId}}</th>
+      <th>{{i.name}}</th>
+      <th>{{i.createdAt | date:'dd.MM.yyyy HH:mm'}}</th>
+      <th>{{i.color}}</th>
+        <th></th>
+    </tr>
+  </table>

@@ -27,8 +27,7 @@ import { ManagerComponent } from './components/manager/manager.component';
     UnitSettingsComponent,
     SolutionComponent,
     ManagerComponent,
-    
-    
+
   ],
   imports: [
     BrowserModule,

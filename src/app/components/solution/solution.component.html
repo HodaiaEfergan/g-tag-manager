@@ -1,0 +1,13 @@
+<table class="table table trapped" id="department-table">
+    <tbody>
+        <tr *ngFor="let data of currentUnits" dir="rtl">
+            <th><input class="form-check-input" type="checkbox" value='' id="flexCheckDefault"></th>
+    <th>{{i.unitId}}</th>
+    <th>{{i.name}}</th>
+    <th>{{i.createdAt | date:'dd.MM.yyyy HH:mm'}}</th>
+    <th>{{i.color}}</th>
+    <th></th>
+
+        </tr>
+    </tbody>
+</table>
