@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { Unit } from 'src/app/models/unit';
 import {HttpService} from '../../service/http/http.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import * as XLSX from 'xlsx'; 
+import * as XLSX from 'xlsx';
 
-	
+
 @Component({
   selector: 'app-unit-list',
   templateUrl: './unit-list.component.html',
@@ -16,14 +16,14 @@ export class UnitListComponent implements OnInit {
   myForm: FormGroup
 
   items: any = [];
-  
-  /*name of the excel-file which will be downloaded. */ 
-  fileName= 'ExcelSheet.xlsx';  
-  
+
+  /*name of the excel-file which will be downloaded. */
+  fileName= 'ExcelSheet.xlsx';
+
   unitList: Array<Unit>
   constructor(private  httpService: HttpService , private router: Router) {
   }
-
+//test-manager
   ngOnInit(): void {
     this.loadData();
     this.myForm = new FormGroup(
@@ -32,7 +32,7 @@ export class UnitListComponent implements OnInit {
         name: new FormControl(),
         unitId: new FormControl(),
         user: new FormControl(),
-        
+
       })
     this.loadData();
   }
@@ -45,11 +45,11 @@ export class UnitListComponent implements OnInit {
     } catch (e) {
       console.log(e);
     }
-    
-    
-  
-  
-    
+
+
+
+
+
 
   }
   post() {
@@ -69,13 +69,13 @@ export class UnitListComponent implements OnInit {
     return this.myForm.get('color') as FormControl;
   }
 
-  
 
 
-exportexcel(): void 
+
+exportexcel(): void
     {
-       /* table id is passed over here */   
-       let element = document.getElementById('excel-table'); 
+       /* table id is passed over here */
+       let element = document.getElementById('excel-table');
        const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
 
        /* generate workbook and add the worksheet */
@@ -84,7 +84,7 @@ exportexcel(): void
 
        /* save to file */
        XLSX.writeFile(wb, this.fileName);
-			
+
     }
 }
 
