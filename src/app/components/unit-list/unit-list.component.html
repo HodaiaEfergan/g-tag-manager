@@ -1,21 +1,63 @@
-<table class="table table-hover">
-  <thead>
-  <tr>
-    <th scope="col">Unit id</th>
-    <th scope="col">Name</th>
-    <th scope="col">Created</th>
-    <th scope="col">Color</th>
-    <th scope="col">Actions</th>
-  </tr>
-  </thead>
-  <tbody>
+<h3 class="col text-center">Your units:</h3>
+<form>
+  <div class="row text-center">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="unit's name">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Last name">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Last name">
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-primary" dir="rtl">sort</button>
+      
+    </div>
+    
+
+  </div>
+</form>
+<form>
+  <div class="row mt-3 text-center">
+    <div class="col">
+      <input type="text" class="form-control" placeholder="unit's name">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Last name">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Last name">
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-primary" dir="rtl">filter</button>
+      
+    </div>
+    
+
+  </div>
+</form>
+<table class="table table-hover mt-4" id="excel-table"> 
+  <tr>       
+     <th>Change config?!</th> 
+     <th>Unit id</th>  
+     <th>Name</th> 
+     <th>Created</th> 
+     <th>Color</th> 
+     <th>Actions</th>   
+  </tr>    
+  
   <tr *ngFor="let i of items" [routerLink]="['/unit-settings']" [queryParams]="{id: i._id}">
+    <th><input class="form-check-input" type="checkbox" value='' id="flexCheckDefault"></th>
     <th>{{i.unitId}}</th>
     <th>{{i.name}}</th>
     <th>{{i.createdAt | date:'dd.MM.yyyy HH:mm'}}</th>
     <th>{{i.color}}</th>
-    <th></th>
+      <th></th>
   </tr>
-
-  </tbody>
 </table>
+<a style="cursor: pointer" (click)="exportexcel()"  dir="rtl" >
+  <button type="button" class="btn btn-success" dir="rtl">export to excel</button>
+</a>
+
+

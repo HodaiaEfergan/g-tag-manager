@@ -13,7 +13,10 @@
       </ul>
     </div>
   </nav>
-  <div class="">Logout</div>
+  
+  <li class="nav-item "  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    <a class="nav-link" [routerLink]="['/login']" >Logout <span class="sr-only"></span></a>
+  </li>
 </div>
 
 <div class="container p-4">

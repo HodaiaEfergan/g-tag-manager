@@ -5,12 +5,14 @@ import {MainComponent} from './components/main/main.component';
 import {LoginComponent} from './components/login/login.component';
 import {AuthGuardService} from './service/guard/auth-guard.service';
 import {UnitSettingsComponent} from './components/unit-settings/unit-settings.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
     path: '', component: MainComponent, canActivate: [AuthGuardService], children: [
       {path: '', component: UnitListComponent},
       {path: 'unit-settings', component: UnitSettingsComponent},
+      {path: 'login', component: LoginComponent},
     ]
   },
   {path: 'login', component: LoginComponent},
@@ -18,7 +20,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), FormsModule,
+    ReactiveFormsModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

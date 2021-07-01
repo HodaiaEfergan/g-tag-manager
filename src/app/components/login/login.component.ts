@@ -9,8 +9,10 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  email;
+  email='';
   pasword;
+  errorMessage: any;
+  
 
 
   constructor(private  httpService: HttpService, private router: Router) {
@@ -35,5 +37,24 @@ export class LoginComponent implements OnInit {
     }
 
   }
+//register
+  async register() {
+    if (!this.email || !this.pasword) {
+      return;
+    }
+    try {
+      let registerResponse = await this.httpService.register(this.email, this.pasword);
+      console.log(registerResponse);
+      const token = Response['data'];
+      console.log('token is: ' + token);
+      localStorage.setItem('token', token);
+      this.router.navigateByUrl('/');
+    } catch (e) {
+      console.log('register error', e);
+    }
+
+  }
+ 
+
 
 }

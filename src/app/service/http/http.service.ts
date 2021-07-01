@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {isNullOrUndefined} from 'util';
-
+import { Unit } from 'src/app/models/unit';
 @Injectable({
   providedIn: 'root'
 })
@@ -21,13 +21,22 @@ export class HttpService {
     })
   };
 
-
+  currentUnits: Array<Unit>
+  
   constructor(private http: HttpClient) {
   }
 
   // login
   login(email, password) {
     return this.http.post(this.baseUrl + 'login', {
+      email,
+      password
+    }).toPromise();
+  }
+
+  //register
+  register(email, password) {
+    return this.http.post(this.baseUrl + 'register', {
       email,
       password
     }).toPromise();
@@ -43,6 +52,10 @@ export class HttpService {
 
   getUnitScanData(unitId) {
     return this.http.get(this.baseUrl + 'units/' + unitId + '/scans').toPromise();
+  }
+
+  getReleventUnits(data) {
+    return this.http.get(this.baseUrl + 'releventUnits', data);
   }
 
 
