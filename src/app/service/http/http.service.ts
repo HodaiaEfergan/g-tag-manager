@@ -43,22 +43,44 @@ export class HttpService {
     }).toPromise();
   }
 
+  sample(data) {
+
+   /* http://localhost:3000/api/sample?data=UIDXYZUBAT4220MVOLINDExt_ONURSSI21,9
+      NETCON"Partner"MCUTMPTPM40.00EXTTMPTPS31.65LOC$GPGGA,114625.715,
+      ,,,,0,00,,,M,0.0,M,,0000*50
+    $SPEEDTAGSTID43TRSSI-51,TID48TRSSI-73,TID35TRSSI-55,TID29TRSSI-56,*/
+
+    return this.http.get(this.baseUrl + 'sample?data=' + data).toPromise();
+  }
+
   getUnit(unitId) {
     return this.http.get(this.baseUrl + 'units/' + unitId,).toPromise();
   }
 
-  getUserUnits(sortKey) {
+  getUserUnits(sortKey ) {
     return this.http.get(this.baseUrl + 'units?sortBy=' + sortKey).toPromise();
   }
 
   getUnitScanData(unitId) {
     return this.http.get(this.baseUrl + 'units/' + unitId + '/scans').toPromise();
   }
-  getAllConfiguration(sortKey) {
-    return this.http.get(this.baseUrl + 'configuration?sortBy' + sortKey).toPromise();
+
+
+  // config methods
+  createNewConfig(config) {
+    return this.http.post(this.baseUrl + 'configs', config).toPromise();
   }
-  createOne(config) {
-    return this.http.get(this.baseUrl + 'config' + '/createOne').toPromise();
+
+  editNewConfig(id, config) {
+    return this.http.put(this.baseUrl + 'configs/' + id, config).toPromise();
+  }
+
+  getAllConfiguration() {
+    return this.http.get(this.baseUrl + 'configs').toPromise();
+  }
+
+  getOneConfig(id) {
+    return this.http.get(this.baseUrl + 'configs/' + id).toPromise();
   }
 
 

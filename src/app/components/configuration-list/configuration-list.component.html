@@ -1,23 +1,26 @@
-<button [routerLink]="['/edit-create-configuration']"  class="btn btn-sm btn-success">create configuration
+<button [routerLink]="['/edit-create-configuration']" class="btn btn-sm btn-success">create configuration
 </button>
 
 <table class="table table-hover mt-4">
   <thead>
   <tr>
     <th>Name</th>
-    <th>Email</th>
-    <th>Sms</th>
-    <th>Call</th>
-    <th>Action</th>
+    <th>Is Active</th>
+    <th>Sms alert</th>
+    <th>Email alert</th>
+    <th>Actions</th>
   </tr>
   </thead>
 
   <tbody *ngFor="let i of items">
   <tr>
-    <th>{{i.email}}</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>{{i.name}}</th>
+    <th>{{i.enabled}}</th>
+    <th>{{i.alertMethods.sms.enabled}}</th>
+    <th>{{i.alertMethods.email.enabled}}</th>
+    <th><div class="d-flex flex-row">
+      <button [routerLink]="['/edit-create-configuration']" [queryParams]="{id: i._id}" class="btn btn-sm btn-primary">Edit</button>
+    </div></th>
     <th>
     </th>
   </tr>

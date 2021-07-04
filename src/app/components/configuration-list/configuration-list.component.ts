@@ -28,7 +28,7 @@ export class ConfigurationListComponent extends BaseComponent implements OnInit 
 
   async loadData() {
     try {
-      let res = await this.httpService.getAllConfiguration(this.sortKey);
+      let res = await this.httpService.getAllConfiguration();
       this.items = res;
       console.log(this.items);
     } catch (e) {

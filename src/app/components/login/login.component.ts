@@ -9,10 +9,9 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  email='';
+  email = '';
   pasword;
   errorMessage: any;
-  
 
 
   constructor(private  httpService: HttpService, private router: Router) {
@@ -28,15 +27,20 @@ export class LoginComponent implements OnInit {
     try {
       let loginResponse = await this.httpService.login(this.email, this.pasword);
       console.log(loginResponse);
-      const token = loginResponse['data'];
+      const token = loginResponse['data']['token'];
+      const user = loginResponse['data']['user'];
+      const role = loginResponse['data']['user']['role'];
       console.log('token is: ' + token);
       localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('role', role);
       this.router.navigateByUrl('/');
     } catch (e) {
       console.log('login error', e);
     }
 
   }
+
 //register
   async register() {
     if (!this.email || !this.pasword) {
@@ -54,7 +58,6 @@ export class LoginComponent implements OnInit {
     }
 
   }
- 
 
 
 }

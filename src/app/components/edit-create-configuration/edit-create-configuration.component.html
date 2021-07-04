@@ -1,70 +1,125 @@
-<form [formGroup]="myForm" (ngSubmit)=" Submit()">
-  <div class="row">
+<div *ngIf="config; else loader" class="container">
 
+  <div class="row text-center">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          General
+        </div>
+        <ul class="list-group list-group-flush">
 
-      <div class="col-md-4">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <input type="checkbox" aria-label="Checkbox for following text input" >
+          <li class="list-group-item">
+            <div class="d-flex flex-row justify-content-start align-items-start">
+              <input class="form-control form-control-sm" [(ngModel)]="config.name"
+                     placeholder="Configuration name">
             </div>
-          </div>
-          <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Email">
-        </div>
-      </div>
-    <div class="col-md-4">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <input type="checkbox" aria-label="Checkbox for following text input" >
-          </div>
-        </div>
-        <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="call">
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <div class="input-group-text">
-            <input type="checkbox" aria-label="Checkbox for following text input" >
-          </div>
-        </div>
-        <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="sms">
+
+          </li>
+
+          <li class="list-group-item">
+            <div class="d-flex flex-row justify-content-start align-items-start">
+              <mat-slide-toggle [(ngModel)]="config.enabled">Is active
+              </mat-slide-toggle>
+            </div>
+          </li>
+
+        </ul>
       </div>
     </div>
 
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          Alert notification methods
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="d-flex flex-row justify-content-center align-items-center">
+              <mat-slide-toggle style="margin-right: 10px;" [(ngModel)]="config.alertMethods.sms.enabled">SMS
+              </mat-slide-toggle>
+              <input class="form-control form-control-sm" [(ngModel)]="config.alertMethods.sms.phone"
+                     placeholder="Your phone number">
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex flex-row justify-content-center align-items-center">
+              <mat-slide-toggle style="margin-right: 10px;" [(ngModel)]="config.alertMethods.email.enabled">Email
+              </mat-slide-toggle>
+              <input class="form-control form-control-sm" [(ngModel)]="config.alertMethods.email.email"
+                     placeholder="Your email">
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          Temperature Settings
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="d-flex flex-row justify-content-center align-items-center">
+              <mat-slide-toggle style="margin-right: 10px;" [(ngModel)]="config.cpuTemp.enabled">CPU Temp
+              </mat-slide-toggle>
+              <input class="form-control form-control-sm" style="margin-right: 5px;" [(ngModel)]="config.cpuTemp.min"
+                     placeholder="Min">
+              <input class="form-control form-control-sm" [(ngModel)]="config.cpuTemp.max" placeholder="Max">
+            </div>
+
+          </li>
+
+          <li class="list-group-item">
+            <div class="d-flex flex-row justify-content-center align-items-center">
+              <mat-slide-toggle style="margin-right: 10px;" [(ngModel)]="config.lowBat.enabled">Low bat
+              </mat-slide-toggle>
+              <input class="form-control form-control-sm" [(ngModel)]="config.lowBat.value"
+                     placeholder="Notify when bat is lower then">
+            </div>
+
+          </li>
+
+        </ul>
+      </div>
+    </div>
+
+
+    <!--   Related units  -->
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          Related units
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor=" let unit of units">
+
+            <div class="d-flex flex-row justify-content-start align-items-start">
+              <mat-checkbox class="example-margin" [checked]="isUnitRelated(unit._id)"
+                            (change)="toggleRelatedUnit(unit._id)">{{unit.name}}</mat-checkbox>
+
+            </div>
+          </li>
+
+
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <button class="btn btn-sm btn-primary" (click)="save()">{{isNew ? 'Create Config' : 'Save Changes'}}</button>
+  </div>
+
+</div>
+
+
+<ng-template #loader>
+  <div class="d-flex flex-column align-items-center justify-content-center"
+       style="height: 100%; width: 100%;">
+    <mat-spinner></mat-spinner>
 
 
   </div>
-  <div class="row">
-        <div class="col">
-          <input type="text" class="form-control" placeholder="max temp">
-        </div>
-        <div class="col">
-          <input type="text" class="form-control" placeholder="min battery">
-        </div>
-        <div class="col">
-          <button type="submit" class="btn btn-primary">submit</button>
-        </div>
-
-      </div>
-</form>
-
-<table class="table table-hover mt-4" >
-  <thead>
-  <tr>
-
-    <th>Name</th>
-    <th (click)="setSort('createdAt')">Created <mat-icon>{{getSortIcon('createdAt')}}</mat-icon></th>
-
-  </tr>
-  </thead>
-
-  <tbody>
-  <tr *ngFor="let i of items">
-    <th>{{i.name}}</th>
-    <th>{{i.createdAt | date:'dd.MM.yyyy HH:mm'}}</th>
-
-  </tr>
-  </tbody>
-</table>
+</ng-template>

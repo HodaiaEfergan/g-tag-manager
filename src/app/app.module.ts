@@ -12,14 +12,17 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {UnitSettingsComponent} from './components/unit-settings/unit-settings.component';
 import {HttpConfigInterceptor} from './interceptor/http-interceptor';
 import {ChartsModule} from 'ng2-charts';
-import { RouterModule } from '@angular/router';
-import { SolutionComponent } from './components/solution/solution.component';
-import { ManagerComponent } from './components/manager/manager.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {SolutionComponent} from './components/solution/solution.component';
+import {ManagerComponent} from './components/manager/manager.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
-import { ConfigurationListComponent } from './components/configuration-list/configuration-list.component';
-import { EditCreateConfigurationComponent } from './components/edit-create-configuration/edit-create-configuration.component';
-
+import {ConfigurationListComponent} from './components/configuration-list/configuration-list.component';
+import {EditCreateConfigurationComponent} from './components/edit-create-configuration/edit-create-configuration.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { SampleViewComponent } from './components/sample-view/sample-view.component';
 
 
 @NgModule({
@@ -33,6 +36,7 @@ import { EditCreateConfigurationComponent } from './components/edit-create-confi
     ManagerComponent,
     ConfigurationListComponent,
     EditCreateConfigurationComponent,
+    SampleViewComponent,
 
   ],
   imports: [
@@ -44,7 +48,11 @@ import { EditCreateConfigurationComponent } from './components/edit-create-confi
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    MatSlideToggleModule,
+    MatFormFieldModule,
+    MatProgressSpinnerModule,
+    MatCheckboxModule
     //RouterModule.forRoot(routes)
   ],
   providers: [HttpService, {
@@ -56,7 +64,8 @@ import { EditCreateConfigurationComponent } from './components/edit-create-confi
 })
 export class AppModule {
 }
-function routes(routes: any): any[] | import("@angular/core").Type<any> | import("@angular/core").ModuleWithProviders<{}> {
+
+function routes(routes: any): any[] | import('@angular/core').Type<any> | import('@angular/core').ModuleWithProviders<{}> {
   throw new Error('Function not implemented.');
 }
 

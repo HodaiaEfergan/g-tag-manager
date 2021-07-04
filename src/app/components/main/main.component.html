@@ -1,3 +1,4 @@
+
 <div class="d-flex flex-row justify-content-between bg-white align-items-center p-3"
      style="  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);">
   <nav class="navbar navbar-expand navbar-light">
@@ -8,7 +9,7 @@
         <li class="nav-item active">
           <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="role!= 'user'">
           <a class="nav-link" href="/users">Users</a>
         </li>
 
