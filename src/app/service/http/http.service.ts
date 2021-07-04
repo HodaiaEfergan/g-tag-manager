@@ -54,9 +54,11 @@ export class HttpService {
   getUnitScanData(unitId) {
     return this.http.get(this.baseUrl + 'units/' + unitId + '/scans').toPromise();
   }
-
-  getReleventUnits(data) {
-    return this.http.get(this.baseUrl + 'releventUnits', data);
+  getAllConfiguration(sortKey) {
+    return this.http.get(this.baseUrl + 'configuration?sortBy' + sortKey).toPromise();
+  }
+  createOne(config) {
+    return this.http.get(this.baseUrl + 'config' + '/createOne').toPromise();
   }
 
 

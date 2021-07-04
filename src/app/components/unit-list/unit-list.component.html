@@ -4,7 +4,7 @@
   <table class="table table-hover mt-4" id="excel-table">
     <thead>
     <tr>
-      <th align="center" (click)="setSort('unitId')">Unit id <mat-icon>{{getSortIcon('unitId')}}</mat-icon>
+      <th align="center" (click)="setSort('unitId')">Unit id <mat-icon id="icon">{{getSortIcon('unitId')}}</mat-icon>
       </th>
       <th>Name</th>
       <th (click)="setSort('createdAt')">Created <mat-icon>{{getSortIcon('createdAt')}}</mat-icon></th>
@@ -35,17 +35,17 @@
 </div>
 
 
-<div class="row text-center" style="height: 300px; width: 600px;">
-  <canvas baseChart
-          [datasets]="lineChartData"
-          [labels]="lineChartLabels"
-          [options]="lineChartOptions"
-          [colors]="lineChartColors"
-          [legend]="lineChartLegend"
-          [chartType]="lineChartType"
-          [plugins]="lineChartPlugins">
-  </canvas>
-</div>
+<!--<div class="row text-center" style="height: 300px; width: 600px;">-->
+<!--  <canvas baseChart-->
+<!--          [datasets]="lineChartData"-->
+<!--          [labels]="lineChartLabels"-->
+<!--          [options]="lineChartOptions"-->
+<!--          [colors]="lineChartColors"-->
+<!--          [legend]="lineChartLegend"-->
+<!--          [chartType]="lineChartType"-->
+<!--          [plugins]="lineChartPlugins">-->
+<!--  </canvas>-->
+<!--</div>-->
 
 
 

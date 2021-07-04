@@ -1,7 +1,10 @@
-import {OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpService} from '../service/http/http.service';
-
+@Component({
+  template: ''
+})
 export abstract class BaseComponent implements OnInit {
+
 
   sortKey = 'unitId'; // 'unitId', '-unitId';
 
