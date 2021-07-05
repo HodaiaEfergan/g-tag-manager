@@ -1,4 +1,3 @@
-
 <div class="d-flex flex-row justify-content-between bg-white align-items-center p-3"
      style="  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);">
   <nav class="navbar navbar-expand navbar-light">
@@ -7,9 +6,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+          <a class="nav-link" href="/">{{role == 'owner' ? 'Units' : 'Home'}} <span class="sr-only"></span></a>
         </li>
-        <li class="nav-item" *ngIf="role!= 'user'">
+        <li class="nav-item" *ngIf="role == 'owner'">
           <a class="nav-link" href="/users">Users</a>
         </li>
 
@@ -21,9 +20,9 @@
     </div>
   </nav>
 
-  <li class="nav-item " routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-    <a class="nav-link" [routerLink]="['/login']">Logout <span class="sr-only"></span></a>
-  </li>
+  <div class="nav-item " routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    <a class="nav-link" [routerLink]="['/login']">Logout ({{user.name}}) <span class="sr-only"></span></a>
+  </div>
 </div>
 
 <div class="container p-4">

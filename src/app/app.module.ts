@@ -22,7 +22,13 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { SampleViewComponent } from './components/sample-view/sample-view.component';
+import {SampleViewComponent} from './components/sample-view/sample-view.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {OkDialogComponent} from './components/dialogs/ok-dialog/ok-dialog.component';
+import {YesNoDialogComponent} from './components/dialogs/yes-no-dialog/yes-no-dialog.component';
+import {DialogService} from './service/dialog/dialog.service';
+import { UsersListComponent } from './components/admin/users-list/users-list.component';
+import { EditCreateUserComponent } from './components/admin/edit-create-user/edit-create-user.component';
 
 
 @NgModule({
@@ -37,6 +43,10 @@ import { SampleViewComponent } from './components/sample-view/sample-view.compon
     ConfigurationListComponent,
     EditCreateConfigurationComponent,
     SampleViewComponent,
+    OkDialogComponent,
+    YesNoDialogComponent,
+    UsersListComponent,
+    EditCreateUserComponent,
 
   ],
   imports: [
@@ -52,10 +62,11 @@ import { SampleViewComponent } from './components/sample-view/sample-view.compon
     MatSlideToggleModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule
     //RouterModule.forRoot(routes)
   ],
-  providers: [HttpService, {
+  providers: [DialogService, HttpService, {
     provide: HTTP_INTERCEPTORS,
     useClass: HttpConfigInterceptor,
     multi: true

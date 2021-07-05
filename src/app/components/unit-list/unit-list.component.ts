@@ -3,9 +3,9 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Unit} from 'src/app/models/unit';
 import {HttpService} from '../../service/http/http.service';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import * as XLSX from 'xlsx';
 import {BaseComponent} from '../base-component';
+import {DialogService} from '../../service/dialog/dialog.service';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class UnitListComponent extends BaseComponent implements OnInit {
 
   unitList: Array<Unit>;
 
-  constructor(httpService: HttpService, private router: Router) {
+  constructor(httpService: HttpService, private router: Router, private dialogService: DialogService) {
     super(httpService);
   }
 
@@ -67,6 +67,16 @@ export class UnitListComponent extends BaseComponent implements OnInit {
 
   }
 
+
+  async okDialog(message) {
+    this.dialogService.showOkDialog('this is ok!');
+  }
+
+  async yesNoDialog(message) {
+    let isYes = await this.dialogService.showYesNoDialog(message);
+
+
+  }
 }
 
 

@@ -8,9 +8,11 @@ import {Component, OnInit} from '@angular/core';
 export class MainComponent implements OnInit {
 
   role;
+  user;
 
   constructor() {
     this.role = localStorage.getItem('role') || 'user';
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
   ngOnInit(): void {

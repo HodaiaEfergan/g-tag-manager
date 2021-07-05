@@ -8,6 +8,8 @@ import {UnitSettingsComponent} from './components/unit-settings/unit-settings.co
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ConfigurationListComponent} from './components/configuration-list/configuration-list.component';
 import {EditCreateConfigurationComponent} from './components/edit-create-configuration/edit-create-configuration.component';
+import {UsersListComponent} from './components/admin/users-list/users-list.component';
+import {EditCreateUserComponent} from './components/admin/edit-create-user/edit-create-user.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,8 @@ const routes: Routes = [
       {path: 'login', component: LoginComponent},
       {path: 'configuration-list', component: ConfigurationListComponent},
       {path: 'edit-create-configuration', component: EditCreateConfigurationComponent},
+      {path: 'users', component: UsersListComponent},
+      {path: 'edit-create-user', component: EditCreateUserComponent},
     ]
   },
   {path: 'login', component: LoginComponent},

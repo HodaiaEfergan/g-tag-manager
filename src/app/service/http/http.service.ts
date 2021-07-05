@@ -45,10 +45,10 @@ export class HttpService {
 
   sample(data) {
 
-   /* http://localhost:3000/api/sample?data=UIDXYZUBAT4220MVOLINDExt_ONURSSI21,9
-      NETCON"Partner"MCUTMPTPM40.00EXTTMPTPS31.65LOC$GPGGA,114625.715,
-      ,,,,0,00,,,M,0.0,M,,0000*50
-    $SPEEDTAGSTID43TRSSI-51,TID48TRSSI-73,TID35TRSSI-55,TID29TRSSI-56,*/
+    /* http://localhost:3000/api/sample?data=UIDXYZUBAT4220MVOLINDExt_ONURSSI21,9
+       NETCON"Partner"MCUTMPTPM40.00EXTTMPTPS31.65LOC$GPGGA,114625.715,
+       ,,,,0,00,,,M,0.0,M,,0000*50
+     $SPEEDTAGSTID43TRSSI-51,TID48TRSSI-73,TID35TRSSI-55,TID29TRSSI-56,*/
 
     return this.http.get(this.baseUrl + 'sample?data=' + data).toPromise();
   }
@@ -57,7 +57,7 @@ export class HttpService {
     return this.http.get(this.baseUrl + 'units/' + unitId,).toPromise();
   }
 
-  getUserUnits(sortKey ) {
+  getUserUnits(sortKey) {
     return this.http.get(this.baseUrl + 'units?sortBy=' + sortKey).toPromise();
   }
 
@@ -65,6 +65,23 @@ export class HttpService {
     return this.http.get(this.baseUrl + 'units/' + unitId + '/scans').toPromise();
   }
 
+
+  // users methods
+  getAllUsers() {
+    return this.http.get(this.baseUrl + 'users').toPromise();
+  }
+
+  getOneUser(id) {
+    return this.http.get(this.baseUrl + 'users/' + id).toPromise();
+  }
+
+  editUser(id, user) {
+    return this.http.put(this.baseUrl + 'users/' + id, user).toPromise();
+  }
+
+  createUser(user) {
+    return this.http.post(this.baseUrl + 'users', user).toPromise();
+  }
 
   // config methods
   createNewConfig(config) {
