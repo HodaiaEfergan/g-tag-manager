@@ -1,0 +1,32 @@
+<div *ngIf="user" class="w-25 m-auto">
+
+  <div class="form-group mt-4">
+    <label>Name</label>
+    <input [(ngModel)]="user.name" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label>Password</label>
+    <input [(ngModel)]="user.password" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label>Email</label>
+    <input [(ngModel)]="user.email" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <mat-checkbox class="example-margin" [(ngModel)]="user.isLocked" [checked]="user.isLocked">Is Locked</mat-checkbox>
+  </div>
+
+  <div class="form-group">
+    <mat-checkbox class="example-margin" [(ngModel)]="isManager" >Is Manager
+    </mat-checkbox>
+  </div>
+
+
+  <div class="d-flex justify-content-center align-items-center">
+    <button (click)="save()" class="btn btn-primary">{{isNew ? 'Create User' : 'Update User'}}</button>
+  </div>
+
+</div>

@@ -1,0 +1,38 @@
+<button [routerLink]="['/edit-create-user']" [queryParams]="{}"
+        class="btn btn-sm btn-primary mr-2">Create new user
+</button>
+<table class="table table-hover mt-4">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Create date</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Is Locked</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+
+  <tbody *ngFor="let user of users">
+  <tr>
+    <th>{{user.name}}</th>
+    <th>{{user.createdAt | date:'dd.MM.yyyy HH:mm' }}</th>
+    <th>{{user.email}}</th>
+    <th>{{user.role}}</th>
+    <th>{{user.isLocked}}</th>
+    <th>
+      <div class="d-flex flex-row">
+        <button [routerLink]="['/edit-create-user']" [queryParams]="{id: user._id}"
+                class="btn btn-sm btn-primary mr-2">Edit
+        </button>
+
+        <button [routerLink]="['/edit-create-configuration']" [queryParams]="{id: user._id}"
+                class="btn btn-sm btn-success">Units
+        </button>
+      </div>
+    </th>
+    <th>
+    </th>
+  </tr>
+  </tbody>
+</table>
