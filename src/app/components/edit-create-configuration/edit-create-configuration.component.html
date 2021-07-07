@@ -92,24 +92,22 @@
         <div class="card-header">
           Related units
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item" *ngFor=" let unit of units">
+        <div class="card-body">
+          <mat-chip-list cdkDropList cdkDropListOrientation="horizontal">
+            <mat-chip (click)="unit.selected = !unit.selected;" cdkDrag *ngFor="let unit of units"
+                      class="{{unit.selected ? 'bg-success text-white':''}}  ">
+              {{unit.name}} ({{unit.unitId}})
+            </mat-chip>
+          </mat-chip-list>
+        </div>
 
-            <div class="d-flex flex-row justify-content-start align-items-start">
-              <mat-checkbox class="example-margin" [checked]="isUnitRelated(unit._id)"
-                            (change)="toggleRelatedUnit(unit._id)">{{unit.name}}</mat-checkbox>
-
-            </div>
-          </li>
-
-
-        </ul>
       </div>
     </div>
   </div>
 
   <div class="row mt-4">
-    <button class="btn btn-sm btn-primary" (click)="save()">{{isNew ? 'Create Config' : 'Save Changes'}}</button>
+    <button class="btn btn-sm btn-primary mr-2" (click)="save()">{{isNew ? 'Create Config' : 'Save Changes'}}</button>
+    <button *ngIf="!isNew" class="btn btn-sm btn-danger" (click)="delete()">Delete Configuration</button>
   </div>
 
 </div>

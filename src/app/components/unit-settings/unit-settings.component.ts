@@ -3,13 +3,16 @@ import {ActivatedRoute} from '@angular/router';
 import {HttpService} from '../../service/http/http.service';
 import {ChartDataSets, ChartOptions} from 'chart.js';
 import {Color, Label} from 'ng2-charts';
+import {BaseComponent} from '../base-component';
+import {DialogService} from '../../service/dialog/dialog.service';
+import {__await} from 'tslib';
 
 @Component({
   selector: 'app-unit-settings',
   templateUrl: './unit-settings.component.html',
   styleUrls: ['./unit-settings.component.scss']
 })
-export class UnitSettingsComponent implements OnInit {
+export class UnitSettingsComponent extends BaseComponent {
 
   unitId;
   unit;
@@ -21,8 +24,7 @@ export class UnitSettingsComponent implements OnInit {
     {data: [], label: 'CPU temp'},
   ];
 
-  lineChartLabels: Label[] = [
-  ];
+  lineChartLabels: Label[] = [];
 
   lineChartOptions = {
     responsive: true,
@@ -41,6 +43,11 @@ export class UnitSettingsComponent implements OnInit {
   lineChartType = 'line';
 
 
+  constructor(httpService: HttpService, private  activatedRoute: ActivatedRoute, private  dialogService: DialogService) {
+    super(httpService);
+  }
+
+
   getChartData() {
     const data = this.scanHistory.map(i => parseFloat(i.cpuTemp));
     return {data: data, label: 'CPU temp'};
@@ -50,8 +57,6 @@ export class UnitSettingsComponent implements OnInit {
     return this.scanHistory.map(i => new Date(i.time).toString());
   }
 
-  constructor(private httpService: HttpService, private  activatedRoute: ActivatedRoute) {
-  }
 
   ngOnInit(): void {
     this.unitId = this.activatedRoute.snapshot.queryParams.id;
@@ -89,4 +94,10 @@ export class UnitSettingsComponent implements OnInit {
     }
   }
 
+  async delete(scanData) {
+    await this.httpService.deleteScanData(scanData);
+    this.dialogService.showOkDialog('Scan data was deleted');
+    this.loadData();
+
+  }
 }

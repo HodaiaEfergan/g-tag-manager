@@ -3,6 +3,8 @@ import {BaseComponent} from '../base-component';
 import {HttpService} from '../../service/http/http.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
+import {DialogService} from '../../service/dialog/dialog.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-edit-create-configuration',
@@ -15,17 +17,14 @@ export class EditCreateConfigurationComponent extends BaseComponent implements O
   config;
   isNew;
   units: any = [];
-  relatedUnits: any = [];
 
 
-  constructor(httpService: HttpService, private  activatedRoute: ActivatedRoute) {
+  constructor(httpService: HttpService, private  activatedRoute: ActivatedRoute, private  dialogService: DialogService, private location: Location) {
     super(httpService);
   }
 
-//test-manager
-  myForm: any;
-
   ngOnInit(): void {
+
 
     // check if edit or create
     let configId = this.activatedRoute.snapshot.queryParams.id;
@@ -60,18 +59,35 @@ export class EditCreateConfigurationComponent extends BaseComponent implements O
       this.isNew = false;
       this.httpService.getOneConfig(configId).then(data => {
         this.config = data;
+        console.log(this.config);
+        this.afterDataLoaded();
+        // init config unit
       });
     }
 
 
     this.httpService.getUserUnits('').then(units => {
       this.units = units;
+      console.log(this.units);
+      this.afterDataLoaded();
       // update all current related units
-      if (!this.isNew) {
+      /*if (!this.isNew) {
         this.relatedUnits = this.units.filter(u => u.configuration === this.config._id);
-      }
+      }*/
+    });
+  }
+
+  afterDataLoaded() {
+    if (this.units.length == 0 || !this.config) {
+      return;
+    }
+
+    // we have config and units
+    this.units.forEach(u => {
+      u.selected = u.configuration._id === this.config._id && (u.configuration._id);
     });
 
+    console.log(this.units);
 
   }
 
@@ -79,27 +95,31 @@ export class EditCreateConfigurationComponent extends BaseComponent implements O
   async save() {
     console.log(this.config);
 
+    let res;
     if (this.isNew) {
-      let res = await this.httpService.createNewConfig(this.config);
-      console.log(res);
-      return;
+      res = await this.httpService.createNewConfig(this.config);
+    } else {
+      res = await this.httpService.editNewConfig(this.config._id, this.config);
     }
 
-    let res = await this.httpService.editNewConfig(this.config._id, this.config);
-    console.log(res);
+    console.log(res.data);
+    // relate units (take all selected unit and those who just removed from current configuration)
+    let unitsToRelate = this.units.filter(u => u.selected || (!u.selected && u.configuration._id === this.config._id));
+    let relateResponse = await this.httpService.relateUnits(unitsToRelate, res['data']['_id']);
+
+    this.dialogService.showOkDialog('Configuration was successfully saved!');
+    return;
 
 
   }
 
-  isUnitRelated(id) {
-    return this.relatedUnits.indexOf(id) > -1;
-  }
 
-  toggleRelatedUnit(id) {
-    if(this.isUnitRelated(id)){
-      this.relatedUnits.splice(this.relatedUnits.indexOf(id),1);
+  async delete() {
+    let isYes = await this.dialogService.showYesNoDialog('Do you want to delete this config?');
+    if (!isYes) {
       return;
     }
-    this.relatedUnits.push(id);
+    await this.httpService.deleteConfiguration(this.config._id);
+    this.location.back();
   }
 }

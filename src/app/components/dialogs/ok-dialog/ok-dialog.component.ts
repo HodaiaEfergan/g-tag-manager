@@ -11,7 +11,6 @@ export class OkDialogComponent implements OnInit {
   message;
 
   constructor(public dialogRef: MatDialogRef<OkDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
-    console.log('data is: ', data);
     this.message = data.message;
   }
 

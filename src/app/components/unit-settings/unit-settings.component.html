@@ -8,18 +8,22 @@
     <th scope="col">Network Connection</th>
     <th scope="col">Cpu Temp</th>
     <th scope="col">Sns Temp</th>
+    <th *ngIf="isOwner()" scope="col">Actions</th>
 
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let i of scanHistory">
-    <th >{{i.createdAt | date:'dd.MM.yyyy HH:mm'}}</th>
+    <th>{{i.createdAt | date:'dd.MM.yyyy HH:mm'}}</th>
     <th>{{i.isExtVoltageOn}}</th>
     <th>{{i.unitRSSI}}</th>
     <th>{{i.voltage}}</th>
     <th>{{i.netCon}}</th>
     <th>{{i.cpuTemp}}</th>
     <th>{{i.snsTemp}}</th>
+    <th *ngIf="isOwner()">
+    <button (click)="delete(i._id)" class="btn btn-sm btn-danger">Delete</button>
+    </th>
     <th></th>
   </tr>
 

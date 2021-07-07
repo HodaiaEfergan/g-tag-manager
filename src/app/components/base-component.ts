@@ -49,4 +49,8 @@ export abstract class BaseComponent implements OnInit {
     return this.sortKey.startsWith('-') ? 'expand_more' : 'expand_less';
   }
 
+
+  isOwner = () => this.role === 'owner';
+  isManager = () => this.role === 'manager';
+
 }

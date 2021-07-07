@@ -66,6 +66,10 @@ export class HttpService {
     return this.http.get(this.baseUrl + 'units/' + unitId + '/scans').toPromise();
   }
 
+  deleteScanData(id) {
+    return this.http.delete(this.baseUrl + 'scan-data/' + id).toPromise();
+  }
+
 
   // users methods
   getAllUsers() {
@@ -93,6 +97,10 @@ export class HttpService {
     return this.http.put(this.baseUrl + 'configs/' + id, config).toPromise();
   }
 
+  deleteConfiguration(id) {
+    return this.http.delete(this.baseUrl + 'configs/' + id).toPromise();
+  }
+
   getAllConfiguration() {
     return this.http.get(this.baseUrl + 'configs').toPromise();
   }
@@ -101,5 +109,9 @@ export class HttpService {
     return this.http.get(this.baseUrl + 'configs/' + id).toPromise();
   }
 
+
+  relateUnits(units, configId) {
+    return this.http.put(this.baseUrl + 'units/relate', {units: units, configId: configId}).toPromise();
+  }
 
 }

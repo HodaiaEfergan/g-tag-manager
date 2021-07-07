@@ -29,6 +29,7 @@ import {YesNoDialogComponent} from './components/dialogs/yes-no-dialog/yes-no-di
 import {DialogService} from './service/dialog/dialog.service';
 import { UsersListComponent } from './components/admin/users-list/users-list.component';
 import { EditCreateUserComponent } from './components/admin/edit-create-user/edit-create-user.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { EditCreateUserComponent } from './components/admin/edit-create-user/edi
     MatFormFieldModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
-    MatDialogModule
+    MatDialogModule,
+    MatChipsModule
     //RouterModule.forRoot(routes)
   ],
   providers: [DialogService, HttpService, {
