@@ -10,6 +10,7 @@ import {ConfigurationListComponent} from './components/configuration-list/config
 import {EditCreateConfigurationComponent} from './components/edit-create-configuration/edit-create-configuration.component';
 import {UsersListComponent} from './components/admin/users-list/users-list.component';
 import {EditCreateUserComponent} from './components/admin/edit-create-user/edit-create-user.component';
+import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
     ]
   },
   {path: 'login', component: LoginComponent},
+  {path: 'forgot-password', component: ForgotPasswordComponent},
 
 ];
 

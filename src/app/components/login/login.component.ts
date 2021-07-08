@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpService} from '../../service/http/http.service';
 import {Router} from '@angular/router';
+import {DialogService} from '../../service/dialog/dialog.service';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +12,12 @@ export class LoginComponent implements OnInit {
 
   email = '';
   pasword;
+  forgotEmail;
   errorMessage: any;
+  forgotPasswordClicked = false;
 
 
-  constructor(private  httpService: HttpService, private router: Router) {
+  constructor(private  httpService: HttpService, private router: Router, private  dialogService: DialogService) {
   }
 
   ngOnInit(): void {
@@ -57,6 +60,12 @@ export class LoginComponent implements OnInit {
       console.log('register error', e);
     }
 
+  }
+
+  async forgotPassword() {
+    let res = await this.httpService.forgotPassword(this.forgotEmail);
+    console.log(res['data']);
+    this.dialogService.showOkDialog('Please check your email...');
   }
 
 

@@ -1,5 +1,6 @@
 <div class="container d-flex align-items-center justify-content-center">
-  <div class="d-flex flex-column justify-content-center align-items-center my-card bg-white p-4" style="margin-top: 15%; width: 50%">
+  <div class="d-flex flex-column justify-content-center align-items-center my-card bg-white p-4"
+       style="margin-top: 15%; width: 50%">
 
 
     <div class="row">
@@ -37,12 +38,18 @@
     </div>
     <div class="form-group">
       <div>
-          <button type="submit" class=" btn btn-primary">Reset
-              Password</button>
+        <button (click)="forgotPasswordClicked  = true;" type="submit" class="btn btn-outline-primary btn-block mt-2">
+          Forgot
+          Password
+        </button>
       </div>
-  </div>
-  </div>
 
+      <div *ngIf="forgotPasswordClicked" class="d-flex flex-column">
+        <input [(ngModel)]="forgotEmail" class="form-control mt-3" placeholder="please enter your email">
+        <button (click)="forgotPassword()" class="btn btn-outline-primary btn-block mt-2">Send</button>
+      </div>
+    </div>
+  </div>
 
 
 </div>

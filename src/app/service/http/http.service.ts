@@ -44,6 +44,20 @@ export class HttpService {
     }).toPromise();
   }
 
+  forgotPassword(email) {
+    return this.http.post(this.baseUrl + 'forgot-password', {
+      email,
+    }).toPromise();
+  }
+
+
+  resetPassword(token, password) {
+    return this.http.post(this.baseUrl + 'reset-password', {
+      token,
+      newPassword: password
+    }).toPromise();
+  }
+
   sample(data) {
 
     /* http://localhost:3000/api/sample?data=UIDXYZUBAT4220MVOLINDExt_ONURSSI21,9
