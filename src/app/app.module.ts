@@ -30,7 +30,6 @@ import {DialogService} from './service/dialog/dialog.service';
 import { UsersListComponent } from './components/admin/users-list/users-list.component';
 import { EditCreateUserComponent } from './components/admin/edit-create-user/edit-create-user.component';
 import {MatChipsModule} from '@angular/material/chips';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -49,7 +48,6 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     YesNoDialogComponent,
     UsersListComponent,
     EditCreateUserComponent,
-    ForgotPasswordComponent,
 
   ],
   imports: [
