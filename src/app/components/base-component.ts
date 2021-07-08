@@ -10,7 +10,7 @@ export abstract class BaseComponent implements OnInit {
   sortKey = 'unitId'; // 'unitId', '-unitId';
   role;
 
-
+//
   protected constructor(public httpService: HttpService) {
     this.role = localStorage.getItem('role') || 'user';
   }
