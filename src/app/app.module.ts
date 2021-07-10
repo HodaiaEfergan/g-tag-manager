@@ -22,7 +22,6 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {SampleViewComponent} from './components/sample-view/sample-view.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {OkDialogComponent} from './components/dialogs/ok-dialog/ok-dialog.component';
 import {YesNoDialogComponent} from './components/dialogs/yes-no-dialog/yes-no-dialog.component';
@@ -43,7 +42,6 @@ import {MatChipsModule} from '@angular/material/chips';
     ManagerComponent,
     ConfigurationListComponent,
     EditCreateConfigurationComponent,
-    SampleViewComponent,
     OkDialogComponent,
     YesNoDialogComponent,
     UsersListComponent,
