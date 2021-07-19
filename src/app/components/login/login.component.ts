@@ -52,7 +52,9 @@ export class LoginComponent implements OnInit {
     try {
       let registerResponse = await this.httpService.register(this.email, this.pasword);
       console.log(registerResponse);
-      const token = Response['data'];
+      const token = registerResponse['token'];
+
+
       console.log('token is: ' + token);
       localStorage.setItem('token', token);
       this.router.navigateByUrl('/');

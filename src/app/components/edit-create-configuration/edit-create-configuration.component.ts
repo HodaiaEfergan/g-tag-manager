@@ -94,7 +94,11 @@ export class EditCreateConfigurationComponent extends BaseComponent implements O
 
   async save() {
     console.log(this.config);
-
+    if(!this.config.name)
+    {
+      this.dialogService.showOkDialog('please enter configuration name');
+      return;
+    }
     let res;
     if (this.isNew) {
       res = await this.httpService.createNewConfig(this.config);
@@ -104,7 +108,7 @@ export class EditCreateConfigurationComponent extends BaseComponent implements O
 
     console.log(res.data);
     // relate units (take all selected unit and those who just removed from current configuration)
-    let unitsToRelate = this.units.filter(u => u.selected || (!u.selected && u.configuration._id === this.config._id));
+    let unitsToRelate = this.units.filter(u => u.selected || (!u.selected && u.configuration?._id === this.config?._id));
     let relateResponse = await this.httpService.relateUnits(unitsToRelate, res['data']['_id']);
 
     this.dialogService.showOkDialog('Configuration was successfully saved!');
@@ -122,4 +126,8 @@ export class EditCreateConfigurationComponent extends BaseComponent implements O
     await this.httpService.deleteConfiguration(this.config._id);
     this.location.back();
   }
+  async SendEmail() {
+     await this.httpService.SendEmail();
+  }
+
 }

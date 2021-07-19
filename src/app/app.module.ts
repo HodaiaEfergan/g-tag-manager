@@ -29,6 +29,8 @@ import {DialogService} from './service/dialog/dialog.service';
 import { UsersListComponent } from './components/admin/users-list/users-list.component';
 import { EditCreateUserComponent } from './components/admin/edit-create-user/edit-create-user.component';
 import {MatChipsModule} from '@angular/material/chips';
+import {ForgotPasswordComponent} from "./components/forgot-password/forgot-password.component";
+
 
 
 @NgModule({
@@ -46,6 +48,7 @@ import {MatChipsModule} from '@angular/material/chips';
     YesNoDialogComponent,
     UsersListComponent,
     EditCreateUserComponent,
+    ForgotPasswordComponent
 
   ],
   imports: [
@@ -54,7 +57,6 @@ import {MatChipsModule} from '@angular/material/chips';
     FormsModule,
     HttpClientModule,
     ChartsModule,
-    FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatIconModule,
@@ -63,7 +65,7 @@ import {MatChipsModule} from '@angular/material/chips';
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatDialogModule,
-    MatChipsModule
+    MatChipsModule,
     //RouterModule.forRoot(routes)
   ],
   providers: [DialogService, HttpService, {

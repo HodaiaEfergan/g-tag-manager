@@ -18,9 +18,13 @@
 
           <li class="list-group-item">
             <div class="d-flex flex-row justify-content-start align-items-start">
-              <mat-slide-toggle [(ngModel)]="config.enabled">Is active
+              <mat-slide-toggle [(ngModel)]="config.enabled.ByServer">Send by server
+              </mat-slide-toggle>
+
+              <mat-slide-toggle class="ml-3" [(ngModel)]="config.enabled.ByUnit">Send by unit
               </mat-slide-toggle>
             </div>
+
           </li>
 
         </ul>

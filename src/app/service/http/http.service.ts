@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {isNullOrUndefined} from 'util';
+// import {isNullOrUndefined} from 'util';
 import {Unit} from 'src/app/models/unit';
 
 @Injectable({
@@ -78,6 +78,9 @@ export class HttpService {
 
   getUnitScanData(unitId) {
     return this.http.get(this.baseUrl + 'units/' + unitId + '/scans').toPromise();
+  }
+  SendEmail() {
+    return this.http.get(this.baseUrl + 'units/').toPromise();
   }
 
   deleteScanData(id) {
