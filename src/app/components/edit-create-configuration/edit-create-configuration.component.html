@@ -47,13 +47,31 @@
             </div>
           </li>
           <li class="list-group-item">
-            <div class="d-flex flex-row justify-content-center align-items-center">
+            <div class="d-flex flex-row justify-content-start align-items-start">
               <mat-slide-toggle style="margin-right: 10px;" [(ngModel)]="config.alertMethods.email.enabled">Email
               </mat-slide-toggle>
               <input class="form-control form-control-sm" [(ngModel)]="config.alertMethods.email.email"
                      placeholder="Your email">
             </div>
           </li>
+          <li class="list-group-item">
+            <div class="d-flex flex-row justify-content-start align-items-start">
+              <mat-slide-toggle style="margin-right: 10px;" [(ngModel)]="config.alertMethods.sendAlertsFromServer">Send
+                alerts from server
+              </mat-slide-toggle>
+
+            </div>
+          </li>
+
+          <li class="list-group-item">
+            <div class="d-flex flex-row justify-content-start align-items-center">
+              <mat-slide-toggle style="margin-right: 10px;" [(ngModel)]="config.alertMethods.sendAlertsFromUnit">Send
+                alerts from unit
+              </mat-slide-toggle>
+
+            </div>
+          </li>
+
         </ul>
       </div>
     </div>
@@ -64,7 +82,7 @@
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
-            <div class="d-flex flex-row justify-content-center align-items-center">
+            <div class="d-flex flex-row justify-content-start align-items-start">
               <mat-slide-toggle style="margin-right: 10px;" [(ngModel)]="config.cpuTemp.enabled">CPU Temp
               </mat-slide-toggle>
               <input class="form-control form-control-sm" style="margin-right: 5px;" [(ngModel)]="config.cpuTemp.min"
@@ -75,7 +93,7 @@
           </li>
 
           <li class="list-group-item">
-            <div class="d-flex flex-row justify-content-center align-items-center">
+            <div class="d-flex flex-row justify-content-start align-items-start">
               <mat-slide-toggle style="margin-right: 10px;" [(ngModel)]="config.lowBat.enabled">Low bat
               </mat-slide-toggle>
               <input class="form-control form-control-sm" [(ngModel)]="config.lowBat.value"
