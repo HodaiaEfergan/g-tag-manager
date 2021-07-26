@@ -13,6 +13,7 @@ import {EditCreateUserComponent} from './components/admin/edit-create-user/edit-
 import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
 
 const routes: Routes = [
+  {path: 'login', component: LoginComponent},
   {
     path: '', component: MainComponent, canActivate: [AuthGuardService], children: [
       {path: '', component: UnitListComponent},
@@ -24,7 +25,7 @@ const routes: Routes = [
       {path: 'edit-create-user', component: EditCreateUserComponent},
     ]
   },
-  {path: 'login', component: LoginComponent},
+
   {path: 'forgot-password', component: ForgotPasswordComponent},
 
 ];
