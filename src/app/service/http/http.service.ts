@@ -1,4 +1,4 @@
-import {Injectable, isDevMode} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 // import {isNullOrUndefined} from 'util';
 import {Unit} from 'src/app/models/unit';
@@ -8,12 +8,11 @@ import {Unit} from 'src/app/models/unit';
 })
 export class HttpService {
 
-
-  URL_TEST = 'http://localhost:3000/api/';
+  URL_TEST = 'http://localhost:2000/api/';
+  //  URL_TEST = 'http://80.178.184.236:80/api/login';
   URL_LIVE = 'https://gtag930.herokuapp.com/api/';
 
-
-  baseUrl = this.URL_LIVE;
+  baseUrl = this.URL_TEST;
 
 
   httpOptions = {
@@ -27,8 +26,6 @@ export class HttpService {
   currentUnits: Array<Unit>;
 
   constructor(private http: HttpClient) {
-
-    this.baseUrl = isDevMode() ? this.URL_TEST : this.URL_LIVE;
   }
 
   // login
@@ -82,7 +79,6 @@ export class HttpService {
   getUnitScanData(unitId) {
     return this.http.get(this.baseUrl + 'units/' + unitId + '/scans').toPromise();
   }
-
   SendEmail() {
     return this.http.get(this.baseUrl + 'units/').toPromise();
   }

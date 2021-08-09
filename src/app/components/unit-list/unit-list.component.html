@@ -9,7 +9,6 @@
       <th (click)="setSort('createdAt')">Created
         <mat-icon>{{getSortIcon('createdAt')}}</mat-icon>
       </th>
-      <th>Color</th>
       <th>Configuration</th>
       <th>Actions</th>
     </tr>
@@ -20,7 +19,7 @@
       <th>{{i.unitId}}</th>
       <th *ngIf="role === 'owner'">{{i.user?.name}}</th>
       <th>{{i.createdAt | date:'dd.MM.yyyy HH:mm'}}</th>
-      <th>{{i.color}}</th>
+
       <th>{{i.configuration?.name}}</th>
       <th>
         <button [routerLink]="['/unit-settings']" [queryParams]="{id: i._id}" class="btn btn-sm btn-success">Scan

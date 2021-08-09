@@ -16,16 +16,6 @@
 
           </li>
 
-          <li class="list-group-item">
-            <div class="d-flex flex-row justify-content-start align-items-start">
-              <mat-slide-toggle [(ngModel)]="config.enabled.ByServer">Send by server
-              </mat-slide-toggle>
-
-              <mat-slide-toggle class="ml-3" [(ngModel)]="config.enabled.ByUnit">Send by unit
-              </mat-slide-toggle>
-            </div>
-
-          </li>
 
         </ul>
       </div>
@@ -42,7 +32,7 @@
             <div class="d-flex flex-row justify-content-center align-items-center">
               <mat-slide-toggle style="margin-right: 10px;" [(ngModel)]="config.alertMethods.sms.enabled">SMS
               </mat-slide-toggle>
-              <input class="form-control form-control-sm" [(ngModel)]="config.alertMethods.sms.phone"
+              <input class="form-control form-control-sm" [(ngModel)]="config.alertMethods.sms.number"
                      placeholder="Your phone number">
             </div>
           </li>

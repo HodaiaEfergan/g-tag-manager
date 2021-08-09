@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
 
   async login() {
     if (!this.email || !this.pasword) {
+      this.dialogService.showOkDialog("jkkj")
       return;
     }
     try {
@@ -34,10 +35,11 @@ export class LoginComponent implements OnInit {
       const user = loginResponse['data']['user'];
       const role = loginResponse['data']['user']['role'];
       console.log('token is: ' + token);
+      console.log(user.role);
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('role', role);
-      this.router.navigateByUrl('/');
+      await this.router.navigateByUrl('/');
     } catch (e) {
       console.log('login error', e);
     }
@@ -55,6 +57,11 @@ export class LoginComponent implements OnInit {
       const token = registerResponse['token'];
 
 
+
+
+if(!token){
+  this.dialogService.showOkDialog("token not found");
+}
       console.log('token is: ' + token);
       localStorage.setItem('token', token);
       this.router.navigateByUrl('/');

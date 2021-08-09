@@ -19,7 +19,7 @@
     <th>{{i.alertMethods.sms.enabled}}</th>
     <th>{{i.alertMethods.email.enabled}}</th>
     <th><div class="d-flex flex-row">
-      <button [routerLink]="['/edit-create-configuration']" [queryParams]="{id: i._id}" class="btn btn-sm btn-primary">Edit</button>
+      <button [routerLink]="['/edit-create-configuration']" [queryParams]="{id: i?._id}" class="btn btn-sm btn-primary">Edit</button>
     </div></th>
     <th>
     </th>

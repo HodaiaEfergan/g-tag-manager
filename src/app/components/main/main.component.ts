@@ -11,6 +11,7 @@ export class MainComponent implements OnInit {
   user;
 
   constructor() {
+    console.log('test1');
     this.role = localStorage.getItem('role') || 'user';
     this.user = JSON.parse(localStorage.getItem('user'));
   }

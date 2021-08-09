@@ -84,7 +84,7 @@ export class EditCreateConfigurationComponent extends BaseComponent implements O
 
     // we have config and units
     this.units.forEach(u => {
-      u.selected = u.configuration._id === this.config._id && (u.configuration._id);
+      u.selected = u.configuration?._id === this.config?._id && (u.configuration?._id);
     });
 
     console.log(this.units);
@@ -103,15 +103,19 @@ export class EditCreateConfigurationComponent extends BaseComponent implements O
     if (this.isNew) {
       res = await this.httpService.createNewConfig(this.config);
     } else {
-      res = await this.httpService.editNewConfig(this.config._id, this.config);
+      res = await this.httpService.editNewConfig(this.config?._id, this.config);
     }
 
     console.log(res.data);
     // relate units (take all selected unit and those who just removed from current configuration)
     let unitsToRelate = this.units.filter(u => u.selected || (!u.selected && u.configuration?._id === this.config?._id));
+    console.log("its good");
     let relateResponse = await this.httpService.relateUnits(unitsToRelate, res['data']['_id']);
+    console.log("its good 2")
 
     this.dialogService.showOkDialog('Configuration was successfully saved!');
+    await this.httpService.SendEmail();
+
     return;
 
 
@@ -123,11 +127,10 @@ export class EditCreateConfigurationComponent extends BaseComponent implements O
     if (!isYes) {
       return;
     }
-    await this.httpService.deleteConfiguration(this.config._id);
+    await this.httpService.deleteConfiguration(this.config?._id);
     this.location.back();
   }
-  async SendEmail() {
-     await this.httpService.SendEmail();
-  }
+
+
 
 }
