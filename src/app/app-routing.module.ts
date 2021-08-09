@@ -18,7 +18,6 @@ const routes: Routes = [
     path: '', component: MainComponent, canActivate: [AuthGuardService], children: [
       {path: '', component: UnitListComponent},
       {path: 'unit-settings', component: UnitSettingsComponent},
-      {path: 'login', component: LoginComponent},
       {path: 'configuration-list', component: ConfigurationListComponent},
       {path: 'edit-create-configuration', component: EditCreateConfigurationComponent},
       {path: 'users', component: UsersListComponent},
