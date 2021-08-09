@@ -1,4 +1,9 @@
-<div class="d-flex flex-row justify-content-between bg-white align-items-center p-3"
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+</head>
+
+<div class="d-flex flex-row justify-content-between bg-white align-items-center p-3 img { max-width: 100%; min-width: 0;}"
      style="  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);">
   <nav class="navbar navbar-expand navbar-light">
     <a class="navbar-brand" href="/">G-Tag-930</a>
@@ -6,14 +11,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="/">{{role == 'owner' ? 'Units' : 'Home'}} <span class="sr-only"></span></a>
+          <a class="nav-link"  [routerLink]="['/']">{{role == 'owner' ? 'Units' : 'Home'}} <span class="sr-only"></span></a>
         </li>
         <li class="nav-item" *ngIf="role == 'owner'">
-          <a class="nav-link" href="/users">Users</a>
+          <a class="nav-link"  [routerLink]="['/users']">Users</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/configuration-list">Configurations</a>
+          <a class="nav-link"  [routerLink]="['/configuration-list']" >Configurations</a>
         </li>
 
       </ul>
@@ -28,3 +33,4 @@
 <div class="container p-4">
   <router-outlet></router-outlet>
 </div>
+
