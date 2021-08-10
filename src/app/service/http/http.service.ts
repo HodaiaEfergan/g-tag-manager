@@ -10,7 +10,8 @@ export class HttpService {
   // test2
 
   URL_TEST = 'http://localhost:3000/api/';
-  URL_LIVE = 'https://gtag930.herokuapp.com/api/';
+  URL_LIVE = 'http://172.105.190.131:3000/api/';
+  // URL_LIVE = 'https://gtag930.herokuapp.com/api/';
 
 
   baseUrl = this.URL_LIVE;
@@ -28,7 +29,7 @@ export class HttpService {
 
   constructor(private http: HttpClient) {
 
-    this.baseUrl = isDevMode() ? this.URL_TEST : this.URL_LIVE;
+    // this.baseUrl = isDevMode() ? this.URL_TEST : this.URL_LIVE;
   }
 
   // login
