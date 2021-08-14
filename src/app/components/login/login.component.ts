@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   async login() {
     if (!this.email || !this.pasword) {
-      this.dialogService.showOkDialog("jkkj")
+      this.dialogService.showOkDialog("email or password not found")
       return;
     }
     try {
@@ -65,7 +65,7 @@ if(!token){
 }
       console.log('token is: ' + token);
       localStorage.setItem('token', token);
-      this.router.navigateByUrl('/');
+     await this.router.navigateByUrl('/');
     } catch (e) {
       console.log('register error', e);
     }
