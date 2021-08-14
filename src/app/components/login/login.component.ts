@@ -49,28 +49,34 @@ export class LoginComponent implements OnInit {
 //register
   async register() {
     if (!this.email || !this.pasword) {
+      this.dialogService.showOkDialog("pleas enter password and email")
       return;
     }
     try {
+      console.log("1");
       let registerResponse = await this.httpService.register(this.email, this.pasword);
+      console.log("2");
       console.log(registerResponse);
       const token = registerResponse['token'];
+      console.log("3");
       this.dialogService.showOkDialog("register succses")
-
-
-
-
-if(!token){
-  this.dialogService.showOkDialog("token not found");
-}
+      if(!token){
+        this.dialogService.showOkDialog("token not found");
+      }
       console.log('token is: ' + token);
       localStorage.setItem('token', token);
-     await this.router.navigateByUrl('/');
+      await this.router.navigateByUrl('/');
     } catch (e) {
       console.log('register error', e);
     }
 
   }
+
+
+
+
+
+
 
   async forgotPassword() {
     let res = await this.httpService.forgotPassword(this.forgotEmail);
