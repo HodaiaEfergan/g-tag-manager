@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
       let registerResponse = await this.httpService.register(this.email, this.pasword);
       console.log(registerResponse);
       const token = registerResponse['token'];
+      this.dialogService.showOkDialog("register succses")
 
 
 
