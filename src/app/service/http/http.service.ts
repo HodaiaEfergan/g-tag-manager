@@ -9,19 +9,19 @@ import {Unit} from 'src/app/models/unit';
 export class HttpService {
   // test2
 
-  URL_TEST = 'http://localhost:3001/api/';
+  URL_TEST = 'http://localhost:3000/api/';
   //URL_LIVE = 'http://80.178.184.236:3001/api/';
   URL_LIVE = 'https://set930.herokuapp.com/api/';
 
 
-  baseUrl = this.URL_LIVE;
+  baseUrl = this.URL_TEST;
 
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       token: localStorage.getItem('token'),
-      // 'Access-Control-Allow-Origin': 'http://localhost:4200'
+       'Access-Control-Allow-Origin': 'http://localhost:4200'
     })
   };
 

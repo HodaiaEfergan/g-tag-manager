@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {HttpService} from '../../service/http/http.service';
 import {Router} from '@angular/router';
 import {DialogService} from '../../service/dialog/dialog.service';
+import {BaseComponent} from "../base-component";
+import {FormControl, FormGroup} from "@angular/forms";
+
 
 @Component({
   selector: 'app-login',
@@ -18,10 +21,13 @@ export class LoginComponent implements OnInit {
 
 
   constructor(private  httpService: HttpService, private router: Router, private  dialogService: DialogService) {
-  }
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
+
+
+
 
   async login() {
     if (!this.email || !this.pasword) {
@@ -41,6 +47,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('role', role);
       await this.router.navigateByUrl('/');
     } catch (e) {
+      this.dialogService.showOkDialog("email or password not found")
       console.log('login error', e);
     }
 
@@ -49,23 +56,19 @@ export class LoginComponent implements OnInit {
 //register
   async register() {
     if (!this.email || !this.pasword) {
-      this.dialogService.showOkDialog("pleas enter password and email")
+      this.dialogService.showOkDialog("please enter password and email")
       return;
     }
     try {
-      console.log("1");
+
       let registerResponse = await this.httpService.register(this.email, this.pasword);
-      console.log("2");
       console.log(registerResponse);
       const token = registerResponse['token'];
-      console.log("3");
       this.dialogService.showOkDialog("register succses")
-      if(!token){
-        this.dialogService.showOkDialog("token not found");
-      }
       console.log('token is: ' + token);
       localStorage.setItem('token', token);
-      await this.router.navigateByUrl('/');
+
+      //await this.router.navigateByUrl('/');
     } catch (e) {
       console.log('register error', e);
     }

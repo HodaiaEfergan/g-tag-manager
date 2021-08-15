@@ -26,11 +26,10 @@
   </nav>
 
   <div class="nav-item " routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-    <a class="nav-link" [routerLink]="['/login']">Logout ({{user?.name}}) <span class="sr-only"></span></a>
+    <a class="nav-link" [routerLink]="['/login']">Logout ({{user.name}}) <span class="sr-only"></span></a>
   </div>
 </div>
 
 <div class="container p-4">
   <router-outlet></router-outlet>
 </div>
-
