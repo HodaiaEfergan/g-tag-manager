@@ -9,6 +9,8 @@ export abstract class BaseComponent implements OnInit {
 
   sortKey = 'unitId'; // 'unitId', '-unitId';
   role;
+  isLocked;
+  users: any = [];
 
 //
   protected constructor(public httpService: HttpService) {

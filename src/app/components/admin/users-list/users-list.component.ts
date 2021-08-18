@@ -9,7 +9,7 @@ import {HttpService} from '../../../service/http/http.service';
 })
 export class UsersListComponent extends BaseComponent {
 
-  users: any = [];
+
 
   constructor(httpService: HttpService) {
     super(httpService);
@@ -20,6 +20,7 @@ export class UsersListComponent extends BaseComponent {
     this.users = await this.httpService.getAllUsers();
     console.log(this.users);
   }
+
 
 
 }

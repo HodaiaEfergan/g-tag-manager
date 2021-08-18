@@ -3,6 +3,8 @@ import {BaseComponent} from '../../base-component';
 import {HttpService} from '../../../service/http/http.service';
 import {ActivatedRoute} from '@angular/router';
 import {DialogService} from '../../../service/dialog/dialog.service';
+import {inspect} from "util";
+
 ///hfg
 @Component({
   selector: 'app-edit-create-user',
@@ -14,6 +16,8 @@ export class EditCreateUserComponent extends BaseComponent {
   isNew;
   user;
   isManager;
+  isOwner;
+
 
 
   constructor(httpService: HttpService, private  activatedRoute: ActivatedRoute, private  dialogService: DialogService) {
@@ -45,9 +49,35 @@ export class EditCreateUserComponent extends BaseComponent {
   }
 
   async save() {
-    this.user.role = this.isManager ? 'manager' : 'user';
+    if(this.isManager&&this.isOwner){
+      this.dialogService.showOkDialog("you cant be manager and owner both");
+      return;
+    }
+    if(this.user.isLocked){
+      let isYes = await this.dialogService.showYesNoDialog("Are you sure you want lock this user?");
+      if(isYes){
+        this.user.isLocked=true;
+        console.log(this.user);
+        return;
+      }
+      else{
+        this.user.isLocked=false;
+        console.log(this.user);
+        return;
+      }
 
-    if (this.isNew) {
+    }
+    if(this.isManager)
+      this.user.role='manager';
+    if(this.isOwner)
+      this.user.role='owner';
+    else
+      this.user.role='user';
+
+
+
+
+    if(this.isNew) {
       try {
         await this.httpService.createUser(this.user);
         this.dialogService.showOkDialog('User was successfully Created!');
