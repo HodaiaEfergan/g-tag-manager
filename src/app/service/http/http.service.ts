@@ -10,7 +10,7 @@ export class HttpService {
   // test2
 
   URL_TEST = 'http://localhost:3001/api/';
-  URL_LIVE = 'http://80.178.184.236:3001/api/';
+  URL_LIVE = 'https://80.178.184.236:3001/api/';
   //URL_LIVE = 'https://set930.herokuapp.com/api/';
 
 
@@ -21,20 +21,20 @@ export class HttpService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       token: localStorage.getItem('token'),
-       'Access-Control-Allow-Origin': 'http://localhost:4200'
+       'Access-Control-Allow-Origin': 'https://localhost:4200'
     })
   };
 
   currentUnits: Array<Unit>;
 
-  constructor(private http: HttpClient) {
+  constructor(private https: HttpClient) {
 
     // this.baseUrl = isDevMode() ? this.URL_TEST : this.URL_LIVE;
   }
 
   // login
   login(email, password) {
-    return this.http.post(this.baseUrl + 'login', {
+    return this.https.post(this.baseUrl + 'login', {
       email,
       password
     }).toPromise();
@@ -42,7 +42,7 @@ export class HttpService {
 
   //register
   register(email, password) {
-    return this.http.post(this.baseUrl + 'register', {
+    return this.https.post(this.baseUrl + 'register', {
       email,
       password
     }).toPromise();
@@ -50,14 +50,14 @@ export class HttpService {
   }
 
   forgotPassword(email) {
-    return this.http.post(this.baseUrl + 'forgot-password', {
+    return this.https.post(this.baseUrl + 'forgot-password', {
       email,
     }).toPromise();
   }
 
 
   resetPassword(token, password) {
-    return this.http.post(this.baseUrl + 'reset-password', {
+    return this.https.post(this.baseUrl + 'reset-password', {
       token,
       newPassword: password
     }).toPromise();
@@ -70,71 +70,71 @@ export class HttpService {
        ,,,,0,00,,,M,0.0,M,,0000*50
      $SPEEDTAGSTID43TRSSI-51,TID48TRSSI-73,TID35TRSSI-55,TID29TRSSI-56,*/
 
-    return this.http.get(this.baseUrl + 'sample?data=' + data).toPromise();
+    return this.https.get(this.baseUrl + 'sample?data=' + data).toPromise();
   }
 
   getUnit(unitId) {
-    return this.http.get(this.baseUrl + 'units/' + unitId,).toPromise();
+    return this.https.get(this.baseUrl + 'units/' + unitId,).toPromise();
   }
 
   getUserUnits(sortKey) {
-    return this.http.get(this.baseUrl + 'units?sortBy=' + sortKey).toPromise();
+    return this.https.get(this.baseUrl + 'units?sortBy=' + sortKey).toPromise();
   }
 
   getUnitScanData(unitId) {
-    return this.http.get(this.baseUrl + 'units/' + unitId + '/scans').toPromise();
+    return this.https.get(this.baseUrl + 'units/' + unitId + '/scans').toPromise();
   }
 
   SendEmail() {
-    return this.http.get(this.baseUrl + 'units/').toPromise();
+    return this.https.get(this.baseUrl + 'units/').toPromise();
   }
 
   deleteScanData(id) {
-    return this.http.delete(this.baseUrl + 'scan-data/' + id).toPromise();
+    return this.https.delete(this.baseUrl + 'scan-data/' + id).toPromise();
   }
 
 
   // users methods
   getAllUsers() {
-    return this.http.get(this.baseUrl + 'users').toPromise();
+    return this.https.get(this.baseUrl + 'users').toPromise();
   }
 
   getOneUser(id) {
-    return this.http.get(this.baseUrl + 'users/' + id).toPromise();
+    return this.https.get(this.baseUrl + 'users/' + id).toPromise();
   }
 
   editUser(id, user) {
-    return this.http.put(this.baseUrl + 'users/' + id, user).toPromise();
+    return this.https.put(this.baseUrl + 'users/' + id, user).toPromise();
   }
 
   createUser(user) {
-    return this.http.post(this.baseUrl + 'users', user).toPromise();
+    return this.https.post(this.baseUrl + 'users', user).toPromise();
   }
 
   // config methods
   createNewConfig(config) {
-    return this.http.post(this.baseUrl + 'configs', config).toPromise();
+    return this.https.post(this.baseUrl + 'configs', config).toPromise();
   }
 
   editNewConfig(id, config) {
-    return this.http.put(this.baseUrl + 'configs/' + id, config).toPromise();
+    return this.https.put(this.baseUrl + 'configs/' + id, config).toPromise();
   }
 
   deleteConfiguration(id) {
-    return this.http.delete(this.baseUrl + 'configs/' + id).toPromise();
+    return this.https.delete(this.baseUrl + 'configs/' + id).toPromise();
   }
 
   getAllConfiguration() {
-    return this.http.get(this.baseUrl + 'configs').toPromise();
+    return this.https.get(this.baseUrl + 'configs').toPromise();
   }
 
   getOneConfig(id) {
-    return this.http.get(this.baseUrl + 'configs/' + id).toPromise();
+    return this.https.get(this.baseUrl + 'configs/' + id).toPromise();
   }
 
 
   relateUnits(units, configId) {
-    return this.http.put(this.baseUrl + 'units/relate', {units: units, configId: configId}).toPromise();
+    return this.https.put(this.baseUrl + 'units/relate', {units: units, configId: configId}).toPromise();
   }
 
 }
