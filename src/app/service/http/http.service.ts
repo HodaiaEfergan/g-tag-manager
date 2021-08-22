@@ -9,31 +9,40 @@ import {Unit} from 'src/app/models/unit';
 export class HttpService {
   // test2
 
-  URL_TEST = 'http://localhost:3001/api/';
-  URL_LIVE = 'http://80.178.184.236:3001/api/';
-  //URL_LIVE = 'https://set930.herokuapp.com/api/';
+  URL_TEST = 'http://localhost:3000/api/';
+  // URL_LIVE = 'http://80.178.184.236:3001/api/';
+  URL_LIVE = 'https://set930.herokuapp.com/api/';
 
 
   baseUrl = this.URL_LIVE;
+  baseFunctionsUrl = 'https://us-central1-g-tag930.cloudfunctions.net/doCall';
 
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       token: localStorage.getItem('token'),
-       'Access-Control-Allow-Origin': 'http://localhost:4200'
+      'Access-Control-Allow-Origin': 'http://localhost:4200'
     })
   };
 
   currentUnits: Array<Unit>;
 
   constructor(private http: HttpClient) {
-
-    // this.baseUrl = isDevMode() ? this.URL_TEST : this.URL_LIVE;
+    this.baseUrl = isDevMode() ? this.URL_TEST : this.URL_LIVE;
   }
 
   // login
   login(email, password) {
+   /* return this.http.post(this.baseFunctionsUrl, {
+      method: 'POST',
+      url: this.baseUrl + 'login',
+      body: {
+        email,
+        password
+      }
+    }).toPromise();*/
+
     return this.http.post(this.baseUrl + 'login', {
       email,
       password
