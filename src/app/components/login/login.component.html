@@ -29,7 +29,7 @@
 
     <div class="row mt-3">
       <div class="col">
-        <input [(ngModel)]="pasword" class="form-control" placeholder="Password">
+        <input (keydown.enter)="login()" [(ngModel)]="pasword" class="form-control" placeholder="Password">
       </div>
     </div>
 

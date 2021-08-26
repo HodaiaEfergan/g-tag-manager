@@ -46,6 +46,7 @@ export class LoginComponent extends BaseComponent {
 
 
   async login() {
+    console.log('ddsfs');
     if (!this.email || !this.pasword) {
       this.dialogService.showOkDialog("email or password not found")
       return;

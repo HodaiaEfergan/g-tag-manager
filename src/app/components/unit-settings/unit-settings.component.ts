@@ -100,4 +100,8 @@ export class UnitSettingsComponent extends BaseComponent {
     this.loadData();
 
   }
+
+  showOriginal(id) {
+    this.dialogService.showOkDialog(id.originalValue);
+  }
 }
