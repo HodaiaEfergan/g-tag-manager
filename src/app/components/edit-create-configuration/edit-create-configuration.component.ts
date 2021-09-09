@@ -43,6 +43,12 @@ export class EditCreateConfigurationComponent extends BaseComponent implements O
             email: ''
           }
         },
+        wifi:{
+          enabled:false,
+          name: '',
+          password: ''
+
+        },
         cpuTemp: {
           enabled: true,
           min: 20,

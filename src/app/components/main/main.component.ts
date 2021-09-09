@@ -9,6 +9,7 @@ export class MainComponent implements OnInit {
 
   role;
   user;
+  items: any = [];
 
   constructor() {
     console.log('test1');

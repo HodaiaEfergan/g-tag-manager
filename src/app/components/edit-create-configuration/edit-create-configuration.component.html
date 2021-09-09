@@ -19,6 +19,26 @@
 
         </ul>
       </div>
+      <div class="card">
+        <div class="card-header">
+          Wifi Settings
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="d-flex flex-row justify-content-start align-items-start">
+              <mat-slide-toggle style="margin-right: 10px;" [(ngModel)]="config.wifiConnection.enabled">wifi
+              </mat-slide-toggle>
+              <input class="form-control form-control-sm" style="margin-right: 5px;" [(ngModel)]="config.wifiConnection.name"
+                     placeholder="name">
+              <input class="form-control form-control-sm" [(ngModel)]="config.wifiConnection.password" placeholder="password">
+            </div>
+
+          </li>
+
+
+
+        </ul>
+      </div>
     </div>
 
 

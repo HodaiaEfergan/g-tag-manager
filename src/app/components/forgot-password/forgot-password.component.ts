@@ -31,7 +31,7 @@ export class ForgotPasswordComponent implements OnInit {
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('role', role);
-    this.router.navigateByUrl('/');
+    await this.router.navigateByUrl('/');
   }
 
 }

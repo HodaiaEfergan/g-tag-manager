@@ -58,7 +58,7 @@ export class EditCreateUserComponent extends BaseComponent {
       if(isYes){
         this.user.isLocked=true;
         console.log(this.user);
-        return;
+
       }
       else{
         this.user.isLocked=false;
