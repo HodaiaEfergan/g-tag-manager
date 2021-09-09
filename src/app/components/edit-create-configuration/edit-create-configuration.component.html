@@ -10,7 +10,7 @@
 
           <li class="list-group-item">
             <div class="d-flex flex-row justify-content-start align-items-start">
-              <input class="form-control form-control-sm" [(ngModel)]="config.name"
+              <input class="form-control form-control-sm" [(ngModel)]="config?.name"
                      placeholder="Configuration name">
             </div>
 
@@ -26,11 +26,11 @@
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
             <div class="d-flex flex-row justify-content-start align-items-start">
-              <mat-slide-toggle style="margin-right: 10px;" [(ngModel)]="config.wifiConnection.enabled">wifi
+              <mat-slide-toggle style="margin-right: 10px;" [(ngModel)]="config.wifiConnection?.enabled">wifi
               </mat-slide-toggle>
-              <input class="form-control form-control-sm" style="margin-right: 5px;" [(ngModel)]="config.wifiConnection.name"
+              <input class="form-control form-control-sm" style="margin-right: 5px;" [(ngModel)]="config.wifiConnection?.name"
                      placeholder="name">
-              <input class="form-control form-control-sm" [(ngModel)]="config.wifiConnection.password" placeholder="password">
+              <input class="form-control form-control-sm" [(ngModel)]="config.wifiConnection?.password" placeholder="password">
             </div>
 
           </li>
@@ -50,9 +50,9 @@
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
             <div class="d-flex flex-row justify-content-center align-items-center">
-              <mat-slide-toggle style="margin-right: 10px;" [(ngModel)]="config.alertMethods.sms.enabled">SMS
+              <mat-slide-toggle style="margin-right: 10px;" [(ngModel)]="config.alertMethods?.sms?.enabled">SMS
               </mat-slide-toggle>
-              <input class="form-control form-control-sm" [(ngModel)]="config.alertMethods.sms.number"
+              <input class="form-control form-control-sm" [(ngModel)]="config.alertMethods.sms?.number"
                      placeholder="Your phone number">
             </div>
           </li>
