@@ -14,7 +14,7 @@ export class HttpService {
   URL_LIVE = 'https://set930.herokuapp.com/api/';
 
 
-  baseUrl = this.URL_LIVE;
+  baseUrl = this.URL_TEST;
   baseFunctionsUrl = 'https://us-central1-g-tag930.cloudfunctions.net/doCall';
 
 
@@ -120,6 +120,7 @@ export class HttpService {
   getOneUser(id) {
     return this.http.get(this.baseUrl + 'users/' + id).toPromise();
   }
+
 
   editUser(id, user) {
     return this.http.put(this.baseUrl + 'users/' + id, user).toPromise();

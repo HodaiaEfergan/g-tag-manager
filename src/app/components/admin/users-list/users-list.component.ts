@@ -24,7 +24,11 @@ export class UsersListComponent extends BaseComponent {
 
 
   async loadData() {
-    this.users = await this.httpService.getAllUsers();
+
+      this.users = await this.httpService.getAllUsers();
+
+
+
 
     console.log(this.users);
 

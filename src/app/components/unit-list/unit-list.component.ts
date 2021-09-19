@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Unit} from 'src/app/models/unit';
 import {HttpService} from '../../service/http/http.service';
 import * as XLSX from 'xlsx';
@@ -18,32 +18,38 @@ export class UnitListComponent extends BaseComponent implements OnInit {
 
   items: any = [];
   unit;
+  user;
 
   /*name of the excel-file which will be downloaded. */
   fileName = 'ExcelSheet.xlsx';
 
   unitList: Object;
 
-  constructor(httpService: HttpService, private router: Router, private dialogService: DialogService) {
+  constructor(httpService: HttpService, private  activatedRoute: ActivatedRoute, private dialogService: DialogService) {
     super(httpService);
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
   async loadUnit(unitId) {
-    this.unit = await this.httpService.getUnit(unitId);
-    console.log(this.unit);
-    this.unitList=await this.httpService.getAllUnits();
+    try{
+      this.unit = await this.httpService.getUnit(unitId);
+      console.log(this.unit);
+      let res = await this.httpService.getAllUsers();
+      this.items = res;
+      console.log(this.items);
+    }
+
+    catch (e) {
+      console.log("res1");
+      console.log(e);
+    }
 
   }
 //test-manager
   ngOnInit(): void {
-    this.loadData();
-    this.myForm = new FormGroup(
-      {
-        Color: new FormControl(),
-        name: new FormControl(),
-        unitId: new FormControl(),
-        user: new FormControl(),
-
-      });
+    let unitId = this.activatedRoute.snapshot.queryParams.id;
+    if (unitId) {
+      this.loadUnit(unitId);
+    }
     this.loadData();
   }
 
@@ -89,8 +95,8 @@ export class UnitListComponent extends BaseComponent implements OnInit {
 
   async save() {
       try {
-        await this.httpService.editUser(this.unit._id, this.unit);
-        this.dialogService.showOkDialog('User was successfully Updated!');
+        await this.httpService.editUnit(this.unit._id, this.unit);
+        this.dialogService.showOkDialog('Unit was successfully Updated!');
       } catch (e) {
         this.dialogService.showOkDialog('There was an error, please try again later');
       }

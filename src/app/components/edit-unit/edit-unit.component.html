@@ -1,61 +1,9 @@
-<div *ngIf="unit; else loader" class="container">
 
-  <div class="row text-center">
-    <div class="col-md-4">
-
-    </div>
-
-
-    <div class="col-md-4">
-      <div class="form-group mt-4">
-        <label>Name</label>
-        <input [(ngModel)]="unit.name" class="form-control">
-      </div>
-      <div class="d-flex justify-content-center align-items-center">
-        <button (click)="save()" class="btn btn-primary">update unit</button>
-      </div>
-
-
-    </div>
-    <div class="col-md-4">
-
-    </div>
-
-
-    <!--   Related units  -->
-
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-header">
-          Related units
-        </div>
-        <div class="card-body">
-          <mat-chip-list cdkDropList cdkDropListOrientation="horizontal">
-            <mat-chip (click)="unit.selected = !unit.selected;" cdkDrag *ngFor="let unit of units"
-                      class="{{unit.selected ? 'bg-success text-white':''}}  ">
-              {{unit.name}} ({{unit.unitId}})
-            </mat-chip>
-          </mat-chip-list>
-        </div>
-
-      </div>
-    </div>
+<div class="container d-flex align-items-center justify-content-center">
+  <label>Name</label>
+  <input [(ngModel)]="name" class="form-control">
+  <div class="d-flex justify-content-center align-items-center">
+    <button (click)="save()" class="btn btn-primary">Update Unit</button>
   </div>
-
-  <div class="row mt-4">
-    <button class="btn btn-sm btn-primary mr-2" (click)="save()">{{isNew ? 'Create Config' : 'Save Changes'}}</button>
-    <button *ngIf="!isNew" class="btn btn-sm btn-danger" (click)="delete()">Delete Configuration</button>
-  </div>
-
 </div>
-
-
-<ng-template #loader>
-  <div class="d-flex flex-column align-items-center justify-content-center"
-       style="height: 100%; width: 100%;">
-    <mat-spinner></mat-spinner>
-
-
-  </div>
-</ng-template>
 

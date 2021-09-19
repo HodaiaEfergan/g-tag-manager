@@ -11,6 +11,7 @@ import {EditCreateConfigurationComponent} from './components/edit-create-configu
 import {UsersListComponent} from './components/admin/users-list/users-list.component';
 import {EditCreateUserComponent} from './components/admin/edit-create-user/edit-create-user.component';
 import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
+import {EditUnitComponent} from "./components/edit-unit/edit-unit.component";
 
 const routes: Routes = [
 
@@ -22,6 +23,7 @@ const routes: Routes = [
       {path: 'edit-create-configuration', component: EditCreateConfigurationComponent},
       {path: 'users', component: UsersListComponent},
       {path: 'edit-create-user', component: EditCreateUserComponent},
+      {path: 'edit-unit', component: EditUnitComponent},
     ]
   },
   {path: 'login', component: LoginComponent},

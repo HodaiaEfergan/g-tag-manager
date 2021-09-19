@@ -31,7 +31,8 @@ import { EditCreateUserComponent } from './components/admin/edit-create-user/edi
 import {MatChipsModule} from '@angular/material/chips';
 import {ForgotPasswordComponent} from "./components/forgot-password/forgot-password.component";
 import {MatOptionModule} from "@angular/material/core";
-import { EditUnitComponent } from './edit-unit/edit-unit.component';
+import {EditUnitComponent} from "./components/edit-unit/edit-unit.component";
+
 
 
 

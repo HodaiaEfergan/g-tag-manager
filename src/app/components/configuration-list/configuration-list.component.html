@@ -13,7 +13,7 @@
   </thead>
 
   <tbody *ngFor="let i of items" >
-  <tr *ngIf="i.creator===user.name">
+  <tr *ngIf="i.creator===user.name || role === 'owner'">
     <th>{{i.name}}</th>
     <th>{{i.enabled}}</th>
     <th>{{i.alertMethods.sms.enabled}}</th>

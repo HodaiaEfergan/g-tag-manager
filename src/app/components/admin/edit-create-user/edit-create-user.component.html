@@ -16,7 +16,7 @@
   </div>
   <div  class="d-flex flex-column align-items-start">
     <label>Units</label>
-    <select  class="custom-select ml-3 ng-valid ng-dirty ng-touched">
+    <select [(ngModel)]="unit.user" class="custom-select ml-3 ng-valid ng-dirty ng-touched">
       <option *ngFor="let items of itemsList">{{items.name}}</option>
 
     </select></div>

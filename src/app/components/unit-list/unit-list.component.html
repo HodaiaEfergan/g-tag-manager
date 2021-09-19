@@ -17,8 +17,8 @@
     </tr>
     </thead>
 
-    <tbody>
-    <tr *ngFor="let i of items">
+    <tbody *ngFor="let i of items">
+    <tr *ngIf="i.user===user.name || role === 'owner'" >
       <th>{{i.unitId}}</th>
       <th>{{i.name}}
       </th>
@@ -31,7 +31,7 @@
           History
         </button>
 
-        <button [routerLink]="['/edit-unit']" [queryParams]="{id: unit?._id}"
+        <button [routerLink]="['/edit-unit']" [queryParams]="{id: i?._id}"
                 class="btn btn-sm btn-primary mr-2">Edit
         </button>
         <button (click)="delete(i._id)" class="btn btn-sm btn-danger">Delete</button>

@@ -21,11 +21,13 @@ export class EditCreateUserComponent extends BaseComponent {
   items: Object = new FormControl();
   itemsList: any = [];
   isUser;
+  unit;
 
 
 
   constructor(httpService: HttpService, private  activatedRoute: ActivatedRoute, private  dialogService: DialogService) {
     super(httpService);
+    this.unit = JSON.parse(localStorage.getItem('unit'));
   }
 
   ngOnInit(): void {

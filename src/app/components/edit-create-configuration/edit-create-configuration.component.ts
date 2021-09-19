@@ -34,7 +34,7 @@ export class EditCreateConfigurationComponent extends BaseComponent implements O
       this.config = {
         name: Date.now(),
         enabled: true,
-        creator: this.user.name,
+        creator: this.user,
         alertMethods: {
           sms: {
             enabled: false,

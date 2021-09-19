@@ -10,7 +10,9 @@ import {BaseComponent} from "../base-component";
   styleUrls: ['./edit-unit.component.scss']
 })
 export class EditUnitComponent extends BaseComponent {
-unit;
+  unitId;
+  unit;
+  name;
   constructor(httpService: HttpService, private  activatedRoute: ActivatedRoute, private  dialogService: DialogService) {
     super(httpService);
   }
@@ -18,20 +20,19 @@ unit;
   ngOnInit(): void {
 
     let unitId = this.activatedRoute.snapshot.queryParams.id;
-    if (unitId) {
-      this.loadUnit(unitId);
-    }
+    this.loadUnit(unitId);
     }
 
 
 
 
   async loadUnit(unitId) {
-    this.unit = await this.httpService.getOneUser(unitId);
+    this.unit = await this.httpService.getUnit(unitId);
     console.log(this.unit);
 
   }
   async save() {
+    this.unit.name=this.name;
 
       try {
         await this.httpService.editUnit(this.unit._id, this.unit);
