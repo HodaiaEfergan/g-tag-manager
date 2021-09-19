@@ -18,13 +18,13 @@ export class HttpService {
   baseFunctionsUrl = 'https://us-central1-g-tag930.cloudfunctions.net/doCall';
 
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      token: localStorage.getItem('token'),
-      'Access-Control-Allow-Origin': 'http://localhost:4200'
-    })
-  };
+  // httpOptions = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     token: localStorage.getItem('token'),
+  //     'Access-Control-Allow-Origin': 'http://localhost:4200'
+  //   })
+  // };
 
   currentUnits: Array<Unit>;
 
@@ -101,6 +101,15 @@ export class HttpService {
   deleteScanData(id) {
     return this.http.delete(this.baseUrl + 'scan-data/' + id).toPromise();
   }
+  deleteUnit(id) {
+    return this.http.delete(this.baseUrl + 'units/' + id).toPromise();
+  }
+  updateUnit(id,unit) {
+    return this.http.put(this.baseUrl + 'units/' + id,unit).toPromise();
+  }
+  deleteOne(id) {
+    return this.http.delete(this.baseUrl + 'config/' + id).toPromise();
+  }
 
 
   // users methods
@@ -114,6 +123,9 @@ export class HttpService {
 
   editUser(id, user) {
     return this.http.put(this.baseUrl + 'users/' + id, user).toPromise();
+  }
+  editUnit(id, unit) {
+    return this.http.put(this.baseUrl + 'units/' + id, unit).toPromise();
   }
 
   createUser(user) {
@@ -136,6 +148,9 @@ export class HttpService {
   getAllConfiguration() {
     return this.http.get(this.baseUrl + 'configs').toPromise();
   }
+  getByCreator(creator){
+    return this.http.get(this.baseUrl + 'configs/'+ creator).toPromise();
+  }
 
   getOneConfig(id) {
     return this.http.get(this.baseUrl + 'configs/' + id).toPromise();
@@ -145,5 +160,9 @@ export class HttpService {
   relateUnits(units, configId) {
     return this.http.put(this.baseUrl + 'units/relate', {units: units, configId: configId}).toPromise();
   }
+  getAllUnits() {
+    return this.http.get(this.baseUrl + 'units').toPromise();
+  }
+
 
 }

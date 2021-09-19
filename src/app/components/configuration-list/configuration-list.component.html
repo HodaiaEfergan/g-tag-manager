@@ -12,14 +12,15 @@
   </tr>
   </thead>
 
-  <tbody *ngFor="let i of items">
-  <tr>
+  <tbody *ngFor="let i of items" >
+  <tr *ngIf="i.creator===user.name">
     <th>{{i.name}}</th>
     <th>{{i.enabled}}</th>
     <th>{{i.alertMethods.sms.enabled}}</th>
     <th>{{i.alertMethods.email.enabled}}</th>
     <th><div class="d-flex flex-row">
       <button [routerLink]="['/edit-create-configuration']" [queryParams]="{id: i?._id}" class="btn btn-sm btn-primary">Edit</button>
+      <button (click)="delete(i?._id)" class="btn btn-sm btn-danger">Delete</button>
     </div></th>
     <th>
     </th>

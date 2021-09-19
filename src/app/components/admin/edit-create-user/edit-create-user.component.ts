@@ -4,6 +4,7 @@ import {HttpService} from '../../../service/http/http.service';
 import {ActivatedRoute} from '@angular/router';
 import {DialogService} from '../../../service/dialog/dialog.service';
 import {inspect} from "util";
+import {FormControl} from "@angular/forms";
 
 ///hfg
 @Component({
@@ -17,6 +18,9 @@ export class EditCreateUserComponent extends BaseComponent {
   user;
   isManager;
   isOwner;
+  items: Object = new FormControl();
+  itemsList: any = [];
+  isUser;
 
 
 
@@ -45,6 +49,7 @@ export class EditCreateUserComponent extends BaseComponent {
   async loadUser(userId) {
     this.user = await this.httpService.getOneUser(userId);
     console.log(this.user);
+    this.itemsList=await this.httpService.getAllUnits();
     this.isManager = this.user.role === 'manager';
   }
 
@@ -71,7 +76,7 @@ export class EditCreateUserComponent extends BaseComponent {
       this.user.role='manager';
     if(this.isOwner)
       this.user.role='owner';
-    else
+    if(this.isUser)
       this.user.role='user';
 
 

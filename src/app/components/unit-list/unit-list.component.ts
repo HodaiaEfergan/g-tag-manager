@@ -17,16 +17,22 @@ export class UnitListComponent extends BaseComponent implements OnInit {
   myForm: FormGroup;
 
   items: any = [];
+  unit;
 
   /*name of the excel-file which will be downloaded. */
   fileName = 'ExcelSheet.xlsx';
 
-  unitList: Array<Unit>;
+  unitList: Object;
 
   constructor(httpService: HttpService, private router: Router, private dialogService: DialogService) {
     super(httpService);
   }
+  async loadUnit(unitId) {
+    this.unit = await this.httpService.getUnit(unitId);
+    console.log(this.unit);
+    this.unitList=await this.httpService.getAllUnits();
 
+  }
 //test-manager
   ngOnInit(): void {
     this.loadData();
@@ -51,6 +57,20 @@ export class UnitListComponent extends BaseComponent implements OnInit {
     }
 
   }
+  async delete(unit) {
+    await this.httpService.deleteUnit(unit);
+    await this.dialogService.showYesNoDialog("Are you sure?");
+    await this.loadData();
+
+  }
+  async edit(unit) {
+    await this.httpService.deleteUnit(unit);
+    await this.dialogService.showYesNoDialog("Are you sure?");
+    await this.loadData();
+
+  }
+
+
 
 
   exportexcel(): void {
@@ -67,6 +87,14 @@ export class UnitListComponent extends BaseComponent implements OnInit {
 
   }
 
+  async save() {
+      try {
+        await this.httpService.editUser(this.unit._id, this.unit);
+        this.dialogService.showOkDialog('User was successfully Updated!');
+      } catch (e) {
+        this.dialogService.showOkDialog('There was an error, please try again later');
+      }
+    }
 
   async okDialog(message) {
     this.dialogService.showOkDialog('this is ok!');

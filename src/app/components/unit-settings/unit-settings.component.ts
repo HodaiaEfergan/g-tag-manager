@@ -96,8 +96,8 @@ export class UnitSettingsComponent extends BaseComponent {
 
   async delete(scanData) {
     await this.httpService.deleteScanData(scanData);
-    this.dialogService.showOkDialog('Scan data was deleted');
-    this.loadData();
+    await this.dialogService.showYesNoDialog("Are you sure?");
+    await this.loadData();
 
   }
 

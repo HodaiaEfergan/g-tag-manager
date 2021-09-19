@@ -5,6 +5,9 @@
       <th align="center" (click)="setSort('unitId')">Unit id
         <mat-icon id="icon">{{getSortIcon('unitId')}}</mat-icon>
       </th>
+      <th>
+        unit name
+      </th>
       <th *ngIf="role === 'owner'" (click)="setSort('user')">User</th>
       <th (click)="setSort('createdAt')">Created
         <mat-icon>{{getSortIcon('createdAt')}}</mat-icon>
@@ -17,6 +20,8 @@
     <tbody>
     <tr *ngFor="let i of items">
       <th>{{i.unitId}}</th>
+      <th>{{i.name}}
+      </th>
       <th *ngIf="role === 'owner'">{{i.user?.name}}</th>
       <th>{{i.createdAt | date:'dd.MM.yyyy HH:mm'}}</th>
 
@@ -25,6 +30,12 @@
         <button [routerLink]="['/unit-settings']" [queryParams]="{id: i._id}" class="btn btn-sm btn-success">Scan
           History
         </button>
+
+        <button [routerLink]="['/edit-unit']" [queryParams]="{id: unit?._id}"
+                class="btn btn-sm btn-primary mr-2">Edit
+        </button>
+        <button (click)="delete(i._id)" class="btn btn-sm btn-danger">Delete</button>
+
       </th>
     </tr>
     </tbody>

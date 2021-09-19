@@ -30,6 +30,8 @@ import { UsersListComponent } from './components/admin/users-list/users-list.com
 import { EditCreateUserComponent } from './components/admin/edit-create-user/edit-create-user.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {ForgotPasswordComponent} from "./components/forgot-password/forgot-password.component";
+import {MatOptionModule} from "@angular/material/core";
+import { EditUnitComponent } from './edit-unit/edit-unit.component';
 
 
 
@@ -48,26 +50,28 @@ import {ForgotPasswordComponent} from "./components/forgot-password/forgot-passw
     YesNoDialogComponent,
     UsersListComponent,
     EditCreateUserComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    EditUnitComponent
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    ChartsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-    MatSlideToggleModule,
-    MatFormFieldModule,
-    MatProgressSpinnerModule,
-    MatCheckboxModule,
-    MatDialogModule,
-    MatChipsModule,
-    //RouterModule.forRoot(routes)
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        ChartsModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        MatSlideToggleModule,
+        MatFormFieldModule,
+        MatProgressSpinnerModule,
+        MatCheckboxModule,
+        MatDialogModule,
+        MatChipsModule,
+        MatOptionModule,
+        //RouterModule.forRoot(routes)
+    ],
   providers: [DialogService, HttpService, {
     provide: HTTP_INTERCEPTORS,
     useClass: HttpConfigInterceptor,

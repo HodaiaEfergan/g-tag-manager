@@ -22,7 +22,7 @@
     <th>{{i.cpuTemp}}</th>
     <th>{{i.snsTemp}}</th>
     <th *ngIf="isOwner()">
-    <button (click)="delete(i._id)" class="btn btn-sm btn-danger">Delete</button>
+    <button (click)="delete(i?._id)" class="btn btn-sm btn-danger">Delete</button>
 <!--    <button (click)="showOriginal(i)" class="btn btn-sm btn-primary">Show original</button>-->
     </th>
     <th></th>
@@ -44,5 +44,5 @@
   </canvas>
 </div>
 
-<app-sample-view *ngIf="unit" [unitId]="unit.unitId"></app-sample-view>
+<app-sample-view *ngIf="unit" [unitId]="unit?.unitId"></app-sample-view>
 

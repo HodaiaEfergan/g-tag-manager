@@ -13,7 +13,7 @@ import {Location} from '@angular/common';
 })
 export class EditCreateConfigurationComponent extends BaseComponent implements OnInit {
   items: any = [];
-
+  user;
   config;
   isNew;
   units: any = [];
@@ -21,6 +21,7 @@ export class EditCreateConfigurationComponent extends BaseComponent implements O
 
   constructor(httpService: HttpService, private  activatedRoute: ActivatedRoute, private  dialogService: DialogService, private location: Location) {
     super(httpService);
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
   ngOnInit(): void {
@@ -31,8 +32,9 @@ export class EditCreateConfigurationComponent extends BaseComponent implements O
     if (!configId) {
       console.log('create new config');
       this.config = {
-        name: '',
+        name: Date.now(),
         enabled: true,
+        creator: this.user.name,
         alertMethods: {
           sms: {
             enabled: false,
@@ -43,12 +45,7 @@ export class EditCreateConfigurationComponent extends BaseComponent implements O
             email: ''
           }
         },
-        wifi:{
-          enabled:false,
-          name: '',
-          password: ''
 
-        },
         cpuTemp: {
           enabled: true,
           min: 20,
@@ -57,7 +54,15 @@ export class EditCreateConfigurationComponent extends BaseComponent implements O
         lowBat: {
           enabled: true,
           value: 20
-        }
+        },
+        wifiConnection:{
+          enabled:false,
+          name: '',
+          password: ''
+
+        },
+        sendAlertsFromServer: true,
+        sendAlertsFromUnit: true,
       };
       this.isNew = true;
     } else {
