@@ -34,14 +34,14 @@ export class HttpService {
 
   // login
   login(email, password) {
-   /* return this.http.post(this.baseFunctionsUrl, {
-      method: 'POST',
-      url: this.baseUrl + 'login',
-      body: {
-        email,
-        password
-      }
-    }).toPromise();*/
+    /* return this.http.post(this.baseFunctionsUrl, {
+       method: 'POST',
+       url: this.baseUrl + 'login',
+       body: {
+         email,
+         password
+       }
+     }).toPromise();*/
 
     return this.http.post(this.baseUrl + 'login', {
       email,
@@ -101,12 +101,15 @@ export class HttpService {
   deleteScanData(id) {
     return this.http.delete(this.baseUrl + 'scan-data/' + id).toPromise();
   }
+
   deleteUnit(id) {
     return this.http.delete(this.baseUrl + 'units/' + id).toPromise();
   }
-  updateUnit(id,unit) {
-    return this.http.put(this.baseUrl + 'units/' + id,unit).toPromise();
+
+  updateUnit(id, unit) {
+    return this.http.put(this.baseUrl + 'units/' + id, unit).toPromise();
   }
+
   deleteOne(id) {
     return this.http.delete(this.baseUrl + 'config/' + id).toPromise();
   }
@@ -125,6 +128,7 @@ export class HttpService {
   editUser(id, user) {
     return this.http.put(this.baseUrl + 'users/' + id, user).toPromise();
   }
+
   editUnit(id, unit) {
     return this.http.put(this.baseUrl + 'units/' + id, unit).toPromise();
   }
@@ -149,8 +153,9 @@ export class HttpService {
   getAllConfiguration() {
     return this.http.get(this.baseUrl + 'configs').toPromise();
   }
-  getByCreator(creator){
-    return this.http.get(this.baseUrl + 'configs/'+ creator).toPromise();
+
+  getByCreator(creator) {
+    return this.http.get(this.baseUrl + 'configs/' + creator).toPromise();
   }
 
   getOneConfig(id) {
@@ -161,6 +166,11 @@ export class HttpService {
   relateUnits(units, configId) {
     return this.http.put(this.baseUrl + 'units/relate', {units: units, configId: configId}).toPromise();
   }
+
+  relateUnitToUser(unitId, userId, unrelate = false) {
+    return this.http.post(this.baseUrl + 'relateUnitToUser', {userId, unitId, unrelate}).toPromise();
+  }
+
   getAllUnits() {
     return this.http.get(this.baseUrl + 'units').toPromise();
   }

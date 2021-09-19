@@ -3,8 +3,7 @@ import {BaseComponent} from '../../base-component';
 import {HttpService} from '../../../service/http/http.service';
 import {ActivatedRoute} from '@angular/router';
 import {DialogService} from '../../../service/dialog/dialog.service';
-import {inspect} from "util";
-import {FormControl} from "@angular/forms";
+import {FormControl} from '@angular/forms';
 
 ///hfg
 @Component({
@@ -14,28 +13,31 @@ import {FormControl} from "@angular/forms";
 })
 export class EditCreateUserComponent extends BaseComponent {
 
+  userId;
+
   isNew;
   user;
   isManager;
   isOwner;
   items: Object = new FormControl();
-  itemsList: any = [];
   isUser;
-  unit;
 
+
+  userUnits: any = [];
+  newUnitId;
 
 
   constructor(httpService: HttpService, private  activatedRoute: ActivatedRoute, private  dialogService: DialogService) {
     super(httpService);
-    this.unit = JSON.parse(localStorage.getItem('unit'));
   }
 
   ngOnInit(): void {
 
-    let userId = this.activatedRoute.snapshot.queryParams.id;
-    if (userId) {
+    this.userId = this.activatedRoute.snapshot.queryParams.id;
+
+    if (this.userId) {
       this.isNew = false;
-      this.loadUser(userId);
+      this.loadData();
     } else {
       this.isNew = true;
       this.user = {
@@ -48,43 +50,46 @@ export class EditCreateUserComponent extends BaseComponent {
     }
   }
 
-  async loadUser(userId) {
-    this.user = await this.httpService.getOneUser(userId);
+  async loadData() {
+    this.user = await this.httpService.getOneUser(this.userId);
     console.log(this.user);
-    this.itemsList=await this.httpService.getAllUnits();
+
+    let allUnits: any = await this.httpService.getAllUnits();
+    console.log(allUnits);
+    this.userUnits = allUnits.filter(u => u.user?._id === this.userId);
     this.isManager = this.user.role === 'manager';
   }
 
   async save() {
-    if(this.isManager&&this.isOwner){
-      this.dialogService.showOkDialog("you cant be manager and owner both");
+    if (this.isManager && this.isOwner) {
+      this.dialogService.showOkDialog('you cant be manager and owner both');
       return;
     }
-    if(this.user.isLocked){
-      let isYes = await this.dialogService.showYesNoDialog("Are you sure you want lock this user?");
-      if(isYes){
-        this.user.isLocked=true;
+    if (this.user.isLocked) {
+      let isYes = await this.dialogService.showYesNoDialog('Are you sure you want lock this user?');
+      if (isYes) {
+        this.user.isLocked = true;
         console.log(this.user);
 
-      }
-      else{
-        this.user.isLocked=false;
+      } else {
+        this.user.isLocked = false;
         console.log(this.user);
         return;
       }
 
     }
-    if(this.isManager)
-      this.user.role='manager';
-    if(this.isOwner)
-      this.user.role='owner';
-    if(this.isUser)
-      this.user.role='user';
+    if (this.isManager) {
+      this.user.role = 'manager';
+    }
+    if (this.isOwner) {
+      this.user.role = 'owner';
+    }
+    if (this.isUser) {
+      this.user.role = 'user';
+    }
 
 
-
-
-    if(this.isNew) {
+    if (this.isNew) {
       try {
         await this.httpService.createUser(this.user);
         this.dialogService.showOkDialog('User was successfully Created!');
@@ -99,6 +104,39 @@ export class EditCreateUserComponent extends BaseComponent {
       } catch (e) {
         this.dialogService.showOkDialog('There was an error, please try again later');
       }
+    }
+  }
+
+  async relateUnit() {
+    if (!this.newUnitId) {
+      return;
+    }
+
+    try {
+      await this.httpService.relateUnitToUser(this.newUnitId, this.userId, false);
+      this.loadData();
+    } catch (e) {
+      console.error(e);
+      this.dialogService.showOkDialog('Unit was not found');
+    }
+
+    this.newUnitId = '';
+
+  }
+
+  async unrelateUnit(unitId) {
+    let isYes = await this.dialogService.showYesNoDialog('Are you sure?');
+    if (!isYes) {
+      return;
+    }
+
+
+    try {
+      await this.httpService.relateUnitToUser(unitId, null, true);
+      this.loadData();
+    } catch (e) {
+      console.error(e);
+      this.dialogService.showOkDialog('Unit was not found');
     }
   }
 }
