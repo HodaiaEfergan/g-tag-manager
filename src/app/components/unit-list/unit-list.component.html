@@ -18,7 +18,7 @@
     </thead>
 
     <tbody *ngFor="let i of items">
-    <tr *ngIf="i.user===user.name || role === 'owner'" >
+    <tr *ngIf="i.user===user._id || role === 'owner'" >
       <th>{{i.unitId}}</th>
       <th>{{i.name}}
       </th>

@@ -32,6 +32,8 @@ import {MatChipsModule} from '@angular/material/chips';
 import {ForgotPasswordComponent} from "./components/forgot-password/forgot-password.component";
 import {MatOptionModule} from "@angular/material/core";
 import {EditUnitComponent} from "./components/edit-unit/edit-unit.component";
+import {MatListModule} from "@angular/material/list";
+import { EditCreateCompanyComponent } from './components/edit-create-company/edit-create-company.component';
 
 
 
@@ -52,27 +54,29 @@ import {EditUnitComponent} from "./components/edit-unit/edit-unit.component";
     UsersListComponent,
     EditCreateUserComponent,
     ForgotPasswordComponent,
-    EditUnitComponent
+    EditUnitComponent,
+    EditCreateCompanyComponent
 
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        ChartsModule,
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        MatIconModule,
-        MatSlideToggleModule,
-        MatFormFieldModule,
-        MatProgressSpinnerModule,
-        MatCheckboxModule,
-        MatDialogModule,
-        MatChipsModule,
-        MatOptionModule,
-        //RouterModule.forRoot(routes)
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ChartsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatSlideToggleModule,
+    MatFormFieldModule,
+    MatProgressSpinnerModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    MatChipsModule,
+    MatOptionModule,
+    MatListModule,
+    //RouterModule.forRoot(routes)
+  ],
   providers: [DialogService, HttpService, {
     provide: HTTP_INTERCEPTORS,
     useClass: HttpConfigInterceptor,

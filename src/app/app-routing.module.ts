@@ -12,6 +12,7 @@ import {UsersListComponent} from './components/admin/users-list/users-list.compo
 import {EditCreateUserComponent} from './components/admin/edit-create-user/edit-create-user.component';
 import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
 import {EditUnitComponent} from "./components/edit-unit/edit-unit.component";
+import {EditCreateCompanyComponent} from "./components/edit-create-company/edit-create-company.component";
 
 const routes: Routes = [
 
@@ -24,10 +25,12 @@ const routes: Routes = [
       {path: 'users', component: UsersListComponent},
       {path: 'edit-create-user', component: EditCreateUserComponent},
       {path: 'edit-unit', component: EditUnitComponent},
+      {path: 'edit-create-company', component: EditCreateCompanyComponent},
     ]
   },
   {path: 'login', component: LoginComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
+
 
 
 ];

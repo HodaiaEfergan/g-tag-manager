@@ -1,6 +1,17 @@
-<button [routerLink]="['/edit-create-user']" [queryParams]="{}"
-        class="btn btn-sm btn-primary mr-2">Create new user
-</button>
+<div class="row">
+  <button [routerLink]="['/edit-create-user']" [queryParams]="{}"
+          class="btn btn-sm btn-primary mr-2" style="font-size: 14px;height: 30px">Create new user
+  </button>
+  <button [routerLink]="['/edit-create-company']" [queryParams]="{}"
+          class="btn btn-sm btn-primary mr-2" style="font-size: 14px;height: 30px">Create new company
+  </button>
+  <p >
+    <button class="btn btn-sm btn-primary mr-2" style="font-size: 14px;height: 30px" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      units
+    </button>
+  </p>
+</div>
+
 <table class="table table-hover mt-4">
   <thead>
   <tr>
@@ -10,6 +21,7 @@
     <th>Role</th>
     <th>Is Locked</th>
     <th>Actions</th>
+
   </tr>
   </thead>
 
@@ -26,6 +38,25 @@
                 class="btn btn-sm btn-primary mr-2">Edit
         </button>
 
+<!--        <p>-->
+<!--          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">-->
+<!--            units-->
+<!--          </button>-->
+<!--        </p>-->
+        <div class="collapse row" id="collapseExample" >
+          <mat-selection-list>
+            <mat-list-option *ngFor="let i of userUnits">
+              {{i.unitId}}
+            </mat-list-option>
+          </mat-selection-list>
+          <mat-selection-list >
+            <mat-list-option *ngFor="let i of usersCompany">
+              {{i.userId}}
+            </mat-list-option>
+          </mat-selection-list>
+
+        </div>
+
 <!--        <button [routerLink]="['/']" [queryParams]="{id: user?._id}"-->
 <!--                class="btn btn-sm btn-success mr-2">Units-->
 <!--        </button>-->
@@ -39,3 +70,9 @@
   </tr>
   </tbody>
 </table>
+
+<button (click)="save()" class="btn btn-primary" type="button">
+  send
+</button>
+
+

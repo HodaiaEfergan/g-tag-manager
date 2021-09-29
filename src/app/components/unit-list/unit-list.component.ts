@@ -33,7 +33,7 @@ export class UnitListComponent extends BaseComponent implements OnInit {
     try{
       this.unit = await this.httpService.getUnit(unitId);
       console.log(this.unit);
-      let res = await this.httpService.getAllUsers();
+      let res = await this.httpService.getAllUnits();
       this.items = res;
       console.log(this.items);
     }
@@ -65,16 +65,19 @@ export class UnitListComponent extends BaseComponent implements OnInit {
   }
   async delete(unit) {
     await this.httpService.deleteUnit(unit);
-    await this.dialogService.showYesNoDialog("Are you sure?");
+    let isYes=await this.dialogService.showYesNoDialog("Are you sure?");
+    if (!isYes) {
+      return;
+    }
     await this.loadData();
 
   }
-  async edit(unit) {
-    await this.httpService.deleteUnit(unit);
-    await this.dialogService.showYesNoDialog("Are you sure?");
-    await this.loadData();
-
-  }
+  // async edit(unit) {
+  //   await this.httpService.deleteUnit(unit);
+  //   await this.dialogService.showYesNoDialog("Are you sure?");
+  //   await this.loadData();
+  //
+  // }
 
 
 

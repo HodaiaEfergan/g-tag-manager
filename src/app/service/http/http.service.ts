@@ -176,4 +176,12 @@ export class HttpService {
   }
 
 
+  async editOneCompany(id, company) {
+    return this.http.put(this.baseUrl + 'company/' + id, company).toPromise();
+  }
+  async createCompany(company) {
+    return this.http.put(this.baseUrl + 'company/', company).toPromise();
+  }
+
+
 }
